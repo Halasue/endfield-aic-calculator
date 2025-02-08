@@ -1,21 +1,33 @@
-# Endfield AIC Calculator / エンドフィールド AIC 計算機
+# エンドフィールド AIC 計算機 (Endfield AIC Calculator)
+
+このプロジェクトは、**アークナイツ：エンドフィールド**の**集成工業システム**における**生産量計算ツール**です。
+
+## 概要
+集成工業システムで使用するアイテム、レシピ、施設データを元に、生産量の最適化や効率的な資源管理をサポートします。
+
+## 機能（予定）
+- 生産チェーンの可視化
+- 各アイテムの生産量計算
+- 各種生産設備数の分析
+
+## ライセンス
+このプロジェクトのソースコードは [MIT License](./LICENSE) の下で公開されています。  
+使用している画像やその他のアセットに関する情報は [ASSETS_LICENSE](./ASSETS_LICENSE) ファイルをご覧ください。
+
+---
+
+# Endfield AIC Calculator
 
 This project is a **Production Calculator Tool** for the **Arknights: Endfield** Automated Industry Complex (AIC).
 
-このプロジェクトは、**アークナイツ：エンドフィールド**の**集成工業システム（AIC: Automated Industry Complex）**における**生産量計算ツール**です。
-
-## Overview / 概要
-
+## Overview
 Supports production optimization and efficient resource management based on item, recipe, and facility data used in the Automated Industry Complex (AIC).
 
-AIC（集成工業システム）で使用するアイテム、レシピ、施設データを元に、生産量の最適化や効率的な資源管理をサポートします。
+## Features (Planned)
+- Visualization of production chains
+- Calculation of item production quantities
+- Analysis of production facility requirements
 
-## Features (Planned) / 機能（予定）
-
-- Visualization of production chains / 生産チェーンの可視化
-- Calculation of item production quantities / 各アイテムの生産量計算
-- Analysis of production facility requirements / 各種生産設備数の分析
-
-## License / ライセンス
-
-MIT License
+## License
+The source code of this project is licensed under the [MIT License](./LICENSE).  
+For information about the images and other assets used, please refer to the [ASSETS_LICENSE](./ASSETS_LICENSE) file.
