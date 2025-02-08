@@ -1,0 +1,1913 @@
+{
+  "items": [
+    {
+      "item_id": "aketine",
+      "name_en": "Aketine",
+      "name_jp": "アケトン樹木",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "0, 0"
+    },
+    {
+      "item_id": "aketine_powder",
+      "name_en": "Aketine Powder",
+      "name_jp": "アケトン粉末",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "1, 0"
+    },
+    {
+      "item_id": "aketine_seed",
+      "name_en": "Aketine Seed",
+      "name_jp": "アケトンの種",
+      "is_mined_resource": false,
+      "is_seed": true,
+      "sprite_coordinates": "2, 0"
+    },
+    {
+      "item_id": "amethyst_bottle",
+      "name_en": "Amethyst Bottle",
+      "name_jp": "紫晶製ボトル",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "3, 0"
+    },
+    {
+      "item_id": "amethyst_component",
+      "name_en": "Amethyst Component",
+      "name_jp": "紫晶装備部品",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "4, 0"
+    },
+    {
+      "item_id": "amethyst_fiber",
+      "name_en": "Amethyst Fiber",
+      "name_jp": "紫晶繊維",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "5, 0"
+    },
+    {
+      "item_id": "amethyst_ore",
+      "name_en": "Amethyst Ore",
+      "name_jp": "紫晶鉱物",
+      "is_mined_resource": true,
+      "is_seed": false,
+      "sprite_coordinates": "6, 0"
+    },
+    {
+      "item_id": "amethyst_part",
+      "name_en": "Amethyst Part",
+      "name_jp": "紫晶部品",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "7, 0"
+    },
+    {
+      "item_id": "amethyst_powder",
+      "name_en": "Amethyst Powder",
+      "name_jp": "紫晶粉末",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "8, 0"
+    },
+    {
+      "item_id": "buck_capsule_a",
+      "name_en": "Buck Capsule [A]",
+      "name_jp": "蕎花カプセルⅢ",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "9, 0"
+    },
+    {
+      "item_id": "buck_capsule_b",
+      "name_en": "Buck Capsule [B]",
+      "name_jp": "蕎花カプセルⅡ",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "10, 0"
+    },
+    {
+      "item_id": "buck_capsule_c",
+      "name_en": "Buck Capsule [C]",
+      "name_jp": "蕎花カプセルⅠ",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "11, 0"
+    },
+    {
+      "item_id": "buckflower",
+      "name_en": "Buckflower",
+      "name_jp": "蕎花",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "12, 0"
+    },
+    {
+      "item_id": "buckflower_powder",
+      "name_en": "Buckflower Powder",
+      "name_jp": "蕎花粉末",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "13, 0"
+    },
+    {
+      "item_id": "buckflower_seed",
+      "name_en": "Buckflower Seed",
+      "name_jp": "蕎花の種",
+      "is_mined_resource": false,
+      "is_seed": true,
+      "sprite_coordinates": "14, 0"
+    },
+    {
+      "item_id": "canned_citrome_a",
+      "name_en": "Canned Citrome [A]",
+      "name_jp": "シトロームの缶詰Ⅲ",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "0, 1"
+    },
+    {
+      "item_id": "canned_citrome_b",
+      "name_en": "Canned Citrome [B]",
+      "name_jp": "シトロームの缶詰Ⅱ",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "1, 1"
+    },
+    {
+      "item_id": "canned_citrome_c",
+      "name_en": "Canned Citrome [C]",
+      "name_jp": "シトロームの缶詰Ⅰ",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "2, 1"
+    },
+    {
+      "item_id": "carbon",
+      "name_en": "Carbon",
+      "name_jp": "炭塊",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "3, 1"
+    },
+    {
+      "item_id": "carbon_powder",
+      "name_en": "Carbon Powder",
+      "name_jp": "炭塊粉末",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "4, 1"
+    },
+    {
+      "item_id": "citrome",
+      "name_en": "Citrome",
+      "name_jp": "シトローム",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "5, 1"
+    },
+    {
+      "item_id": "citrome_powder",
+      "name_en": "Citrome Powder",
+      "name_jp": "シトローム粉末",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "6, 1"
+    },
+    {
+      "item_id": "citrome_seed",
+      "name_en": "Citrome Seed",
+      "name_jp": "シトロームの種",
+      "is_mined_resource": false,
+      "is_seed": true,
+      "sprite_coordinates": "7, 1"
+    },
+    {
+      "item_id": "clean_water",
+      "name_en": "Clean Water",
+      "name_jp": "真水",
+      "is_mined_resource": true,
+      "is_seed": false,
+      "sprite_coordinates": "8, 1"
+    },
+    {
+      "item_id": "cryston_bottle",
+      "name_en": "Cryston Bottle",
+      "name_jp": "高晶製ボトル",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "9, 1"
+    },
+    {
+      "item_id": "cryston_component",
+      "name_en": "Cryston Component",
+      "name_jp": "高晶装備部品",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "10, 1"
+    },
+    {
+      "item_id": "cryston_fiber",
+      "name_en": "Cryston Fiber",
+      "name_jp": "高晶繊維",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "11, 1"
+    },
+    {
+      "item_id": "cryston_part",
+      "name_en": "Cryston Part",
+      "name_jp": "高晶部品",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "12, 1"
+    },
+    {
+      "item_id": "cryston_powder",
+      "name_en": "Cryston Powder",
+      "name_jp": "高晶細粉",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "13, 1"
+    },
+    {
+      "item_id": "cuprium",
+      "name_en": "Cuprium",
+      "name_jp": "赤鉄塊",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "14, 1"
+    },
+    {
+      "item_id": "cuprium_bottle",
+      "name_en": "Cuprium Bottle",
+      "name_jp": "赤銅タンク",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "0, 2"
+    },
+    {
+      "item_id": "cuprium_component",
+      "name_en": "Cuprium Component",
+      "name_jp": "赤銅装備部品",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "1, 2"
+    },
+    {
+      "item_id": "cuprium_ore",
+      "name_en": "Cuprium Ore",
+      "name_jp": "赤銅鉱物",
+      "is_mined_resource": true,
+      "is_seed": false,
+      "sprite_coordinates": "2, 2"
+    },
+    {
+      "item_id": "cuprium_part",
+      "name_en": "Cuprium Part",
+      "name_jp": "銅製部品",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "3, 2"
+    },
+    {
+      "item_id": "dense_carbon_powder",
+      "name_en": "Dense Carbon Powder",
+      "name_jp": "炭塊細粉",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "4, 2"
+    },
+    {
+      "item_id": "dense_ferrium_powder",
+      "name_en": "Dense Ferrium Powder",
+      "name_jp": "青鉄細粉",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "5, 2"
+    },
+    {
+      "item_id": "dense_originium_powder",
+      "name_en": "Dense Originium Powder",
+      "name_jp": "源石細粉",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "6, 2"
+    },
+    {
+      "item_id": "dense_origocrust_powder",
+      "name_en": "Dense Origocrust Powder",
+      "name_jp": "結晶細粉",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "7, 2"
+    },
+    {
+      "item_id": "ferrium",
+      "name_en": "Ferrium",
+      "name_jp": "青鉄塊",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "8, 2"
+    },
+    {
+      "item_id": "ferrium_bottle",
+      "name_en": "Ferrium Bottle",
+      "name_jp": "製鉄製ボトル",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "9, 2"
+    },
+    {
+      "item_id": "ferrium_component",
+      "name_en": "Ferrium Component",
+      "name_jp": "青鉄装備部品",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "10, 2"
+    },
+    {
+      "item_id": "ferrium_ore",
+      "name_en": "Ferrium Ore",
+      "name_jp": "青鉄鉱物",
+      "is_mined_resource": true,
+      "is_seed": false,
+      "sprite_coordinates": "11, 2"
+    },
+    {
+      "item_id": "ferrium_part",
+      "name_en": "Ferrium Part",
+      "name_jp": "鉄製部品",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "12, 2"
+    },
+    {
+      "item_id": "ferrium_powder",
+      "name_en": "Ferrium Powder",
+      "name_jp": "青鉄粉末",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "13, 2"
+    },
+    {
+      "item_id": "ground_buckflower_powder",
+      "name_en": "Ground Buckflower Powder",
+      "name_jp": "蕎花細粉",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "14, 2"
+    },
+    {
+      "item_id": "ground_citrome_powder",
+      "name_en": "Ground Citrome Powder",
+      "name_jp": "シトローム細粉",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "0, 3"
+    },
+    {
+      "item_id": "hc_battery",
+      "name_en": "HC Battery",
+      "name_jp": "大容量バッテリー",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "1, 3"
+    },
+    {
+      "item_id": "industrial_explosive",
+      "name_en": "Industrial Explosive",
+      "name_jp": "工業爆弾",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "2, 3"
+    },
+    {
+      "item_id": "jincao",
+      "name_en": "Jincao",
+      "name_jp": "錦草",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "3, 3"
+    },
+    {
+      "item_id": "jincao_drink",
+      "name_en": "Jincao Drink",
+      "name_jp": "錦草ソーダⅠ",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "4, 3"
+    },
+    {
+      "item_id": "jincao_powder",
+      "name_en": "Jincao Powder",
+      "name_jp": "錦草粉末",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "5, 3"
+    },
+    {
+      "item_id": "jincao_seed",
+      "name_en": "Jincao Seed",
+      "name_jp": "錦草の種",
+      "is_mined_resource": false,
+      "is_seed": true,
+      "sprite_coordinates": "6, 3"
+    },
+    {
+      "item_id": "jincao_solution",
+      "name_en": "Jincao Solution",
+      "name_jp": "錦草エキス",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "7, 3"
+    },
+    {
+      "item_id": "jincao_tea",
+      "name_en": "Jincao Tea",
+      "name_jp": "錦草ソーダⅡ",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "8, 3"
+    },
+    {
+      "item_id": "lc_battery",
+      "name_en": "LC Battery",
+      "name_jp": "小容量バッテリー",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "9, 3"
+    },
+    {
+      "item_id": "originium_ore",
+      "name_en": "Originium Ore",
+      "name_jp": "源石鉱物",
+      "is_mined_resource": true,
+      "is_seed": false,
+      "sprite_coordinates": "10, 3"
+    },
+    {
+      "item_id": "originium_powder",
+      "name_en": "Originium Powder",
+      "name_jp": "源石粉末",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "11, 3"
+    },
+    {
+      "item_id": "origocrust",
+      "name_en": "Origocrust",
+      "name_jp": "結晶外殻",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "12, 3"
+    },
+    {
+      "item_id": "origocrust_powder",
+      "name_en": "Origocrust Powder",
+      "name_jp": "結晶外殻粉末",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "13, 3"
+    },
+    {
+      "item_id": "packed_origocrust",
+      "name_en": "Packed Origocrust",
+      "name_jp": "特製結晶",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "14, 3"
+    },
+    {
+      "item_id": "redjade_ginseng",
+      "name_en": "Redjade Ginseng",
+      "name_jp": "苦葉椒",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "0, 4"
+    },
+    {
+      "item_id": "redjade_ginseng_seed",
+      "name_en": "Redjade Ginseng Seed",
+      "name_jp": "苦葉椒の種",
+      "is_mined_resource": false,
+      "is_seed": true,
+      "sprite_coordinates": "1, 4"
+    },
+    {
+      "item_id": "reed_rye",
+      "name_en": "Reed Rye",
+      "name_jp": "灰麦",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "2, 4"
+    },
+    {
+      "item_id": "reed_rye_seed",
+      "name_en": "Reed Rye Seed",
+      "name_jp": "灰麦の種",
+      "is_mined_resource": false,
+      "is_seed": true,
+      "sprite_coordinates": "3, 4"
+    },
+    {
+      "item_id": "sandleaf",
+      "name_en": "Sandleaf",
+      "name_jp": "サンドリーフ",
+      "is_mined_resource": true,
+      "is_seed": false,
+      "sprite_coordinates": "5, 4"
+    },
+    {
+      "item_id": "sandleaf_powder",
+      "name_en": "Sandleaf Powder",
+      "name_jp": "サンドリーフ粉末",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "6, 4"
+    },
+    {
+      "item_id": "sandleaf_seed",
+      "name_en": "Sandleaf Seed",
+      "name_jp": "サンドリーフの種",
+      "is_mined_resource": false,
+      "is_seed": true,
+      "sprite_coordinates": "7, 4"
+    },
+    {
+      "item_id": "sc_battery",
+      "name_en": "SC Battery",
+      "name_jp": "中容量バッテリー",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "4, 4"
+    },
+    {
+      "item_id": "sewage",
+      "name_en": "Sewage",
+      "name_jp": "汚水",
+      "is_mined_resource": true,
+      "is_seed": false,
+      "sprite_coordinates": "8, 4"
+    },
+    {
+      "item_id": "stabilized_carbon",
+      "name_en": "Stabilized Carbon",
+      "name_jp": "安定炭塊",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "9, 4"
+    },
+    {
+      "item_id": "steel",
+      "name_en": "Steel",
+      "name_jp": "鋼",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "10, 4"
+    },
+    {
+      "item_id": "steel_bottle",
+      "name_en": "Steel Bottle",
+      "name_jp": "鋼製ボトル",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "11, 4"
+    },
+    {
+      "item_id": "steel_bottle_(jar)",
+      "name_en": "Steel Bottle (jar)",
+      "name_jp": "鋼製タンク",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "12, 4"
+    },
+    {
+      "item_id": "steel_part",
+      "name_en": "Steel Part",
+      "name_jp": "鋼製部品",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "13, 4"
+    },
+    {
+      "item_id": "tartpepper",
+      "name_en": "Tartpepper",
+      "name_jp": "玉葉人参",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "14, 4"
+    },
+    {
+      "item_id": "tartpepper_seed",
+      "name_en": "Tartpepper Seed",
+      "name_jp": "玉葉人参の種",
+      "is_mined_resource": false,
+      "is_seed": true,
+      "sprite_coordinates": "0, 5"
+    },
+    {
+      "item_id": "yazhen",
+      "name_en": "Yazhen",
+      "name_jp": "芽針",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "1, 5"
+    },
+    {
+      "item_id": "yazhen_powder",
+      "name_en": "Yazhen Powder",
+      "name_jp": "芽針粉末",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "2, 5"
+    },
+    {
+      "item_id": "yazhen_seed",
+      "name_en": "Yazhen Seed",
+      "name_jp": "芽針の種",
+      "is_mined_resource": false,
+      "is_seed": true,
+      "sprite_coordinates": "3, 5"
+    },
+    {
+      "item_id": "yazhen_solution",
+      "name_en": "Yazhen Solution",
+      "name_jp": "芽針エキス",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "4, 5"
+    },
+    {
+      "item_id": "yazhen_syringe_a",
+      "name_en": "Yazhen Syringe [A]",
+      "name_jp": "芽針注射剤Ⅱ",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "5, 5"
+    },
+    {
+      "item_id": "yazhen_syringe_c",
+      "name_en": "Yazhen Syringe [C]",
+      "name_jp": "芽針注射剤Ⅰ",
+      "is_mined_resource": false,
+      "is_seed": false,
+      "sprite_coordinates": "6, 5"
+    }
+  ],
+  "facilities": [
+    {
+      "facility_id": "refining_unit",
+      "name_en": "Refining Unit",
+      "name_jp": "精錬炉",
+      "process_time": 2
+    },
+    {
+      "facility_id": "shredding_unit",
+      "name_en": "Shredding Unit",
+      "name_jp": "粉砕機",
+      "process_time": 2
+    },
+    {
+      "facility_id": "fitting_unit",
+      "name_en": "Fitting Unit",
+      "name_jp": "組立機",
+      "process_time": 2
+    },
+    {
+      "facility_id": "moulding_unit",
+      "name_en": "Moulding Unit",
+      "name_jp": "塑形機",
+      "process_time": 2
+    },
+    {
+      "facility_id": "planting_unit",
+      "name_en": "Planting Unit",
+      "name_jp": "栽培機",
+      "process_time": 2
+    },
+    {
+      "facility_id": "seed_picking_unit",
+      "name_en": "Seed-Picking Unit",
+      "name_jp": "採種機",
+      "process_time": 2
+    },
+    {
+      "facility_id": "water_treatment_unit",
+      "name_en": "Water Treatment Unit",
+      "name_jp": "汚水処理装置",
+      "process_time": 6
+    },
+    {
+      "facility_id": "gearing_unit",
+      "name_en": "Gearing Unit",
+      "name_jp": "装備部品加工機",
+      "process_time": 10
+    },
+    {
+      "facility_id": "filling_unit",
+      "name_en": "Filling Unit",
+      "name_jp": "充填機",
+      "process_time": 10
+    },
+    {
+      "facility_id": "packaging_unit",
+      "name_en": "Packaging Unit",
+      "name_jp": "包装機",
+      "process_time": 10
+    },
+    {
+      "facility_id": "grinding_unit",
+      "name_en": "Grinding Unit",
+      "name_jp": "研磨機",
+      "process_time": 2
+    },
+    {
+      "facility_id": "reactor_crucible",
+      "name_en": "Reactor Crucible",
+      "name_jp": "化学反応炉",
+      "process_time": 2
+    }
+  ],
+  "mining_facilities": [
+    {
+      "mining_facility_id": "portable_originium_rig",
+      "name_en": "Portable Originium Rig",
+      "name_jp": "携帯式源石採鉱機"
+    },
+    {
+      "mining_facility_id": "electric_mining_rig",
+      "name_en": "Electric Mining Rig",
+      "name_jp": "電動採鉱機"
+    },
+    {
+      "mining_facility_id": "electric_mining_rig_mk_ii",
+      "name_en": "Electric Mining Rig Mk II",
+      "name_jp": "電動採鉱機Ⅱ"
+    },
+    {
+      "mining_facility_id": "hydro_mining_rig",
+      "name_en": "Hydro Mining Rig",
+      "name_jp": "水力採鉱機"
+    },
+    {
+      "mining_facility_id": "fluid_pump",
+      "name_en": "Fluid Pump",
+      "name_jp": "液体ポンプ"
+    }
+  ],
+  "recipes": [
+    {
+      "recipe_id": "recipe_001",
+      "item_id": "buckflower",
+      "output_quantity": 1,
+      "facility_id": "planting_unit"
+    },
+    {
+      "recipe_id": "recipe_002",
+      "item_id": "buckflower_seed",
+      "output_quantity": 2,
+      "facility_id": "seed_picking_unit"
+    },
+    {
+      "recipe_id": "recipe_003",
+      "item_id": "citrome",
+      "output_quantity": 1,
+      "facility_id": "planting_unit"
+    },
+    {
+      "recipe_id": "recipe_004",
+      "item_id": "citrome_seed",
+      "output_quantity": 2,
+      "facility_id": "seed_picking_unit"
+    },
+    {
+      "recipe_id": "recipe_005",
+      "item_id": "sandleaf",
+      "output_quantity": 1,
+      "facility_id": "planting_unit"
+    },
+    {
+      "recipe_id": "recipe_006",
+      "item_id": "sandleaf_seed",
+      "output_quantity": 2,
+      "facility_id": "seed_picking_unit"
+    },
+    {
+      "recipe_id": "recipe_007",
+      "item_id": "aketine",
+      "output_quantity": 1,
+      "facility_id": "planting_unit"
+    },
+    {
+      "recipe_id": "recipe_008",
+      "item_id": "aketine_seed",
+      "output_quantity": 2,
+      "facility_id": "seed_picking_unit"
+    },
+    {
+      "recipe_id": "recipe_009",
+      "item_id": "jincao",
+      "output_quantity": 1,
+      "facility_id": "planting_unit"
+    },
+    {
+      "recipe_id": "recipe_010",
+      "item_id": "jincao_seed",
+      "output_quantity": 2,
+      "facility_id": "seed_picking_unit"
+    },
+    {
+      "recipe_id": "recipe_011",
+      "item_id": "yazhen",
+      "output_quantity": 1,
+      "facility_id": "planting_unit"
+    },
+    {
+      "recipe_id": "recipe_012",
+      "item_id": "yazhen_seed",
+      "output_quantity": 2,
+      "facility_id": "seed_picking_unit"
+    },
+    {
+      "recipe_id": "recipe_013",
+      "item_id": "sewage",
+      "output_quantity": 1,
+      "facility_id": "moulding_unit"
+    },
+    {
+      "recipe_id": "recipe_014",
+      "item_id": "sewage",
+      "output_quantity": 1,
+      "facility_id": "moulding_unit"
+    },
+    {
+      "recipe_id": "recipe_015",
+      "item_id": "sewage",
+      "output_quantity": 1,
+      "facility_id": "refining_unit"
+    },
+    {
+      "recipe_id": "recipe_016",
+      "item_id": "sewage",
+      "output_quantity": 1,
+      "facility_id": "refining_unit"
+    },
+    {
+      "recipe_id": "recipe_017",
+      "item_id": "reed_rye_seed",
+      "output_quantity": 2,
+      "facility_id": "seed_picking_unit"
+    },
+    {
+      "recipe_id": "recipe_018",
+      "item_id": "tartpepper_seed",
+      "output_quantity": 2,
+      "facility_id": "seed_picking_unit"
+    },
+    {
+      "recipe_id": "recipe_019",
+      "item_id": "redjade_ginseng_seed",
+      "output_quantity": 2,
+      "facility_id": "seed_picking_unit"
+    },
+    {
+      "recipe_id": "recipe_020",
+      "item_id": "jincao_solution",
+      "output_quantity": 1,
+      "facility_id": "reactor_crucible"
+    },
+    {
+      "recipe_id": "recipe_021",
+      "item_id": "yazhen_solution",
+      "output_quantity": 1,
+      "facility_id": "reactor_crucible"
+    },
+    {
+      "recipe_id": "recipe_022",
+      "item_id": "carbon",
+      "output_quantity": 1,
+      "facility_id": "refining_unit"
+    },
+    {
+      "recipe_id": "recipe_023",
+      "item_id": "origocrust",
+      "output_quantity": 1,
+      "facility_id": "refining_unit"
+    },
+    {
+      "recipe_id": "recipe_024",
+      "item_id": "amethyst_fiber",
+      "output_quantity": 1,
+      "facility_id": "refining_unit"
+    },
+    {
+      "recipe_id": "recipe_025",
+      "item_id": "ferrium",
+      "output_quantity": 1,
+      "facility_id": "refining_unit"
+    },
+    {
+      "recipe_id": "recipe_026",
+      "item_id": "ferrium",
+      "output_quantity": 2,
+      "facility_id": "refining_unit"
+    },
+    {
+      "recipe_id": "recipe_027",
+      "item_id": "cuprium",
+      "output_quantity": 1,
+      "facility_id": "refining_unit"
+    },
+    {
+      "recipe_id": "recipe_028",
+      "item_id": "stabilized_carbon",
+      "output_quantity": 1,
+      "facility_id": "refining_unit"
+    },
+    {
+      "recipe_id": "recipe_029",
+      "item_id": "packed_origocrust",
+      "output_quantity": 1,
+      "facility_id": "refining_unit"
+    },
+    {
+      "recipe_id": "recipe_030",
+      "item_id": "cryston_fiber",
+      "output_quantity": 1,
+      "facility_id": "refining_unit"
+    },
+    {
+      "recipe_id": "recipe_031",
+      "item_id": "steel",
+      "output_quantity": 1,
+      "facility_id": "refining_unit"
+    },
+    {
+      "recipe_id": "recipe_032",
+      "item_id": "carbon_powder",
+      "output_quantity": 1,
+      "facility_id": "shredding_unit"
+    },
+    {
+      "recipe_id": "recipe_033",
+      "item_id": "carbon_powder",
+      "output_quantity": 1,
+      "facility_id": "refining_unit"
+    },
+    {
+      "recipe_id": "recipe_034",
+      "item_id": "originium_powder",
+      "output_quantity": 1,
+      "facility_id": "shredding_unit"
+    },
+    {
+      "recipe_id": "recipe_035",
+      "item_id": "origocrust_powder",
+      "output_quantity": 1,
+      "facility_id": "shredding_unit"
+    },
+    {
+      "recipe_id": "recipe_036",
+      "item_id": "amethyst_powder",
+      "output_quantity": 1,
+      "facility_id": "shredding_unit"
+    },
+    {
+      "recipe_id": "recipe_037",
+      "item_id": "ferrium_powder",
+      "output_quantity": 1,
+      "facility_id": "shredding_unit"
+    },
+    {
+      "recipe_id": "recipe_038",
+      "item_id": "sandleaf_powder",
+      "output_quantity": 3,
+      "facility_id": "shredding_unit"
+    },
+    {
+      "recipe_id": "recipe_039",
+      "item_id": "aketine_powder",
+      "output_quantity": 2,
+      "facility_id": "shredding_unit"
+    },
+    {
+      "recipe_id": "recipe_040",
+      "item_id": "ground_buckflower_powder",
+      "output_quantity": 1,
+      "facility_id": "grinding_unit"
+    },
+    {
+      "recipe_id": "recipe_041",
+      "item_id": "ground_citrome_powder",
+      "output_quantity": 1,
+      "facility_id": "grinding_unit"
+    },
+    {
+      "recipe_id": "recipe_042",
+      "item_id": "dense_carbon_powder",
+      "output_quantity": 1,
+      "facility_id": "grinding_unit"
+    },
+    {
+      "recipe_id": "recipe_043",
+      "item_id": "dense_originium_powder",
+      "output_quantity": 1,
+      "facility_id": "grinding_unit"
+    },
+    {
+      "recipe_id": "recipe_044",
+      "item_id": "dense_origocrust_powder",
+      "output_quantity": 1,
+      "facility_id": "grinding_unit"
+    },
+    {
+      "recipe_id": "recipe_045",
+      "item_id": "cryston_powder",
+      "output_quantity": 1,
+      "facility_id": "grinding_unit"
+    },
+    {
+      "recipe_id": "recipe_046",
+      "item_id": "dense_ferrium_powder",
+      "output_quantity": 1,
+      "facility_id": "grinding_unit"
+    },
+    {
+      "recipe_id": "recipe_047",
+      "item_id": "amethyst_bottle",
+      "output_quantity": 1,
+      "facility_id": "moulding_unit"
+    },
+    {
+      "recipe_id": "recipe_048",
+      "item_id": "ferrium_bottle",
+      "output_quantity": 1,
+      "facility_id": "moulding_unit"
+    },
+    {
+      "recipe_id": "recipe_049",
+      "item_id": "cryston_bottle",
+      "output_quantity": 1,
+      "facility_id": "moulding_unit"
+    },
+    {
+      "recipe_id": "recipe_050",
+      "item_id": "steel_bottle",
+      "output_quantity": 1,
+      "facility_id": "moulding_unit"
+    },
+    {
+      "recipe_id": "recipe_051",
+      "item_id": "steel_bottle_2",
+      "output_quantity": 1,
+      "facility_id": "moulding_unit"
+    },
+    {
+      "recipe_id": "recipe_052",
+      "item_id": "cuprium_bottle",
+      "output_quantity": 1,
+      "facility_id": "moulding_unit"
+    },
+    {
+      "recipe_id": "recipe_053",
+      "item_id": "amethyst_part",
+      "output_quantity": 1,
+      "facility_id": "fitting_unit"
+    },
+    {
+      "recipe_id": "recipe_054",
+      "item_id": "ferrium_part",
+      "output_quantity": 1,
+      "facility_id": "fitting_unit"
+    },
+    {
+      "recipe_id": "recipe_055",
+      "item_id": "cryston_part",
+      "output_quantity": 1,
+      "facility_id": "fitting_unit"
+    },
+    {
+      "recipe_id": "recipe_056",
+      "item_id": "steel_part",
+      "output_quantity": 1,
+      "facility_id": "fitting_unit"
+    },
+    {
+      "recipe_id": "recipe_057",
+      "item_id": "cuprium_part",
+      "output_quantity": 1,
+      "facility_id": "fitting_unit"
+    },
+    {
+      "recipe_id": "recipe_058",
+      "item_id": "amethyst_component",
+      "output_quantity": 1,
+      "facility_id": "gearing_unit"
+    },
+    {
+      "recipe_id": "recipe_059",
+      "item_id": "ferrium_component",
+      "output_quantity": 1,
+      "facility_id": "gearing_unit"
+    },
+    {
+      "recipe_id": "recipe_060",
+      "item_id": "cryston_component",
+      "output_quantity": 1,
+      "facility_id": "gearing_unit"
+    },
+    {
+      "recipe_id": "recipe_061",
+      "item_id": "cuprium_component",
+      "output_quantity": 1,
+      "facility_id": "gearing_unit"
+    },
+    {
+      "recipe_id": "recipe_062",
+      "item_id": "lc_battery",
+      "output_quantity": 1,
+      "facility_id": "packaging_unit"
+    },
+    {
+      "recipe_id": "recipe_063",
+      "item_id": "sc_battery",
+      "output_quantity": 1,
+      "facility_id": "packaging_unit"
+    },
+    {
+      "recipe_id": "recipe_064",
+      "item_id": "hc_battery",
+      "output_quantity": 1,
+      "facility_id": "packaging_unit"
+    },
+    {
+      "recipe_id": "recipe_065",
+      "item_id": "industrial_explosive",
+      "output_quantity": 1,
+      "facility_id": "packaging_unit"
+    },
+    {
+      "recipe_id": "recipe_066",
+      "item_id": "buckflower_powder",
+      "output_quantity": 2,
+      "facility_id": "shredding_unit"
+    },
+    {
+      "recipe_id": "recipe_067",
+      "item_id": "citrome_powder",
+      "output_quantity": 2,
+      "facility_id": "shredding_unit"
+    },
+    {
+      "recipe_id": "recipe_068",
+      "item_id": "jincao_powder",
+      "output_quantity": 2,
+      "facility_id": "shredding_unit"
+    },
+    {
+      "recipe_id": "recipe_069",
+      "item_id": "yazhen_powder",
+      "output_quantity": 2,
+      "facility_id": "shredding_unit"
+    },
+    {
+      "recipe_id": "recipe_070",
+      "item_id": "buck_capsule_c",
+      "output_quantity": 1,
+      "facility_id": "filling_unit"
+    },
+    {
+      "recipe_id": "recipe_071",
+      "item_id": "buck_capsule_b",
+      "output_quantity": 1,
+      "facility_id": "filling_unit"
+    },
+    {
+      "recipe_id": "recipe_072",
+      "item_id": "canned_citrome_c",
+      "output_quantity": 1,
+      "facility_id": "filling_unit"
+    },
+    {
+      "recipe_id": "recipe_073",
+      "item_id": "canned_citrome_b",
+      "output_quantity": 1,
+      "facility_id": "filling_unit"
+    },
+    {
+      "recipe_id": "recipe_074",
+      "item_id": "jincao_drink",
+      "output_quantity": 1,
+      "facility_id": "filling_unit"
+    },
+    {
+      "recipe_id": "recipe_075",
+      "item_id": "jincao_drink",
+      "output_quantity": 1,
+      "facility_id": "filling_unit"
+    },
+    {
+      "recipe_id": "recipe_076",
+      "item_id": "yazhen_syringe_c",
+      "output_quantity": 1,
+      "facility_id": "filling_unit"
+    },
+    {
+      "recipe_id": "recipe_077",
+      "item_id": "yazhen_syringe_c",
+      "output_quantity": 1,
+      "facility_id": "filling_unit"
+    },
+    {
+      "recipe_id": "recipe_078",
+      "item_id": "buck_capsule_a",
+      "output_quantity": 1,
+      "facility_id": "filling_unit"
+    },
+    {
+      "recipe_id": "recipe_079",
+      "item_id": "canned_citrome_a",
+      "output_quantity": 1,
+      "facility_id": "filling_unit"
+    },
+    {
+      "recipe_id": "recipe_080",
+      "item_id": "jincao_tea",
+      "output_quantity": 1,
+      "facility_id": "filling_unit"
+    },
+    {
+      "recipe_id": "recipe_081",
+      "item_id": "yazhen_syringe_a",
+      "output_quantity": 1,
+      "facility_id": "filling_unit"
+    }
+  ],
+  "materials": [
+    {
+      "recipe_id": "recipe_001",
+      "material_id": "buckflower_seed",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_002",
+      "material_id": "buckflower",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_003",
+      "material_id": "citrome_seed",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_004",
+      "material_id": "citrome",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_005",
+      "material_id": "sandleaf_seed",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_006",
+      "material_id": "sandleaf",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_007",
+      "material_id": "aketine_seed",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_008",
+      "material_id": "aketine",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_009",
+      "material_id": "jincao_seed",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_009",
+      "material_id": "clean_water",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_010",
+      "material_id": "jincao",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_011",
+      "material_id": "yazhen_seed",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_011",
+      "material_id": "clean_water",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_012",
+      "material_id": "yazhen",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_013",
+      "material_id": "steel",
+      "quantity": 2
+    },
+    {
+      "recipe_id": "recipe_013",
+      "material_id": "clean_water",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_014",
+      "material_id": "cuprium",
+      "quantity": 2
+    },
+    {
+      "recipe_id": "recipe_014",
+      "material_id": "clean_water",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_015",
+      "material_id": "cuprium_ore",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_015",
+      "material_id": "clean_water",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_016",
+      "material_id": "ferrium_ore",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_016",
+      "material_id": "clean_water",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_017",
+      "material_id": "reed_rye",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_018",
+      "material_id": "tartpepper",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_019",
+      "material_id": "redjade_ginseng",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_020",
+      "material_id": "jincao_powder",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_020",
+      "material_id": "clean_water",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_021",
+      "material_id": "yazhen_powder",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_021",
+      "material_id": "clean_water",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_022",
+      "material_id": "buckflower",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_023",
+      "material_id": "originium_ore",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_024",
+      "material_id": "amethyst_ore",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_025",
+      "material_id": "ferrium_ore",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_026",
+      "material_id": "ferrium_ore",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_026",
+      "material_id": "clean_water",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_027",
+      "material_id": "cuprium_ore",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_027",
+      "material_id": "clean_water",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_028",
+      "material_id": "dense_carbon_powder",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_029",
+      "material_id": "dense_origocrust_powder",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_030",
+      "material_id": "cryston_powder",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_031",
+      "material_id": "dense_ferrium_powder",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_032",
+      "material_id": "carbon",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_033",
+      "material_id": "buckflower_powder",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_034",
+      "material_id": "originium_ore",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_035",
+      "material_id": "origocrust",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_036",
+      "material_id": "amethyst_fiber",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_037",
+      "material_id": "ferrium",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_038",
+      "material_id": "sandleaf",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_039",
+      "material_id": "aketine",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_040",
+      "material_id": "buckflower_powder",
+      "quantity": 2
+    },
+    {
+      "recipe_id": "recipe_040",
+      "material_id": "sandleaf_powder",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_041",
+      "material_id": "citrome_powder",
+      "quantity": 2
+    },
+    {
+      "recipe_id": "recipe_041",
+      "material_id": "sandleaf_powder",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_042",
+      "material_id": "carbon_powder",
+      "quantity": 2
+    },
+    {
+      "recipe_id": "recipe_042",
+      "material_id": "sandleaf_powder",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_043",
+      "material_id": "originium_powder",
+      "quantity": 2
+    },
+    {
+      "recipe_id": "recipe_043",
+      "material_id": "sandleaf_powder",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_044",
+      "material_id": "origocrust_powder",
+      "quantity": 2
+    },
+    {
+      "recipe_id": "recipe_044",
+      "material_id": "sandleaf_powder",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_045",
+      "material_id": "amethyst_powder",
+      "quantity": 2
+    },
+    {
+      "recipe_id": "recipe_045",
+      "material_id": "sandleaf_powder",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_046",
+      "material_id": "ferrium_powder",
+      "quantity": 2
+    },
+    {
+      "recipe_id": "recipe_046",
+      "material_id": "sandleaf_powder",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_047",
+      "material_id": "amethyst_fiber",
+      "quantity": 2
+    },
+    {
+      "recipe_id": "recipe_048",
+      "material_id": "ferrium",
+      "quantity": 2
+    },
+    {
+      "recipe_id": "recipe_049",
+      "material_id": "cryston_fiber",
+      "quantity": 2
+    },
+    {
+      "recipe_id": "recipe_050",
+      "material_id": "steel",
+      "quantity": 2
+    },
+    {
+      "recipe_id": "recipe_051",
+      "material_id": "steel",
+      "quantity": 2
+    },
+    {
+      "recipe_id": "recipe_051",
+      "material_id": "clean_water",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_052",
+      "material_id": "cuprium",
+      "quantity": 2
+    },
+    {
+      "recipe_id": "recipe_052",
+      "material_id": "clean_water",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_053",
+      "material_id": "amethyst_fiber",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_054",
+      "material_id": "ferrium",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_055",
+      "material_id": "cryston_part",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_056",
+      "material_id": "steel",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_057",
+      "material_id": "cuprium",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_058",
+      "material_id": "origocrust",
+      "quantity": 5
+    },
+    {
+      "recipe_id": "recipe_058",
+      "material_id": "amethyst_fiber",
+      "quantity": 5
+    },
+    {
+      "recipe_id": "recipe_059",
+      "material_id": "origocrust",
+      "quantity": 10
+    },
+    {
+      "recipe_id": "recipe_059",
+      "material_id": "ferrium",
+      "quantity": 10
+    },
+    {
+      "recipe_id": "recipe_060",
+      "material_id": "packed_origocrust",
+      "quantity": 10
+    },
+    {
+      "recipe_id": "recipe_060",
+      "material_id": "cryston_fiber",
+      "quantity": 10
+    },
+    {
+      "recipe_id": "recipe_061",
+      "material_id": "packed_origocrust",
+      "quantity": 10
+    },
+    {
+      "recipe_id": "recipe_061",
+      "material_id": "cuprium",
+      "quantity": 5
+    },
+    {
+      "recipe_id": "recipe_062",
+      "material_id": "amethyst_part",
+      "quantity": 5
+    },
+    {
+      "recipe_id": "recipe_062",
+      "material_id": "originium_powder",
+      "quantity": 10
+    },
+    {
+      "recipe_id": "recipe_063",
+      "material_id": "ferrium_part",
+      "quantity": 10
+    },
+    {
+      "recipe_id": "recipe_063",
+      "material_id": "originium_powder",
+      "quantity": 20
+    },
+    {
+      "recipe_id": "recipe_064",
+      "material_id": "steel_part",
+      "quantity": 10
+    },
+    {
+      "recipe_id": "recipe_064",
+      "material_id": "dense_originium_powder",
+      "quantity": 20
+    },
+    {
+      "recipe_id": "recipe_065",
+      "material_id": "amethyst_part",
+      "quantity": 5
+    },
+    {
+      "recipe_id": "recipe_065",
+      "material_id": "aketine_powder",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_066",
+      "material_id": "buckflower",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_067",
+      "material_id": "citrome",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_068",
+      "material_id": "jincao",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_069",
+      "material_id": "yazhen",
+      "quantity": 1
+    },
+    {
+      "recipe_id": "recipe_070",
+      "material_id": "amethyst_bottle",
+      "quantity": 5
+    },
+    {
+      "recipe_id": "recipe_070",
+      "material_id": "buckflower_powder",
+      "quantity": 5
+    },
+    {
+      "recipe_id": "recipe_071",
+      "material_id": "ferrium_bottle",
+      "quantity": 10
+    },
+    {
+      "recipe_id": "recipe_071",
+      "material_id": "buckflower_powder",
+      "quantity": 10
+    },
+    {
+      "recipe_id": "recipe_072",
+      "material_id": "amethyst_bottle",
+      "quantity": 5
+    },
+    {
+      "recipe_id": "recipe_072",
+      "material_id": "citrome_powder",
+      "quantity": 5
+    },
+    {
+      "recipe_id": "recipe_073",
+      "material_id": "ferrium_bottle",
+      "quantity": 10
+    },
+    {
+      "recipe_id": "recipe_073",
+      "material_id": "citrome_powder",
+      "quantity": 10
+    },
+    {
+      "recipe_id": "recipe_074",
+      "material_id": "steel_bottle",
+      "quantity": 10
+    },
+    {
+      "recipe_id": "recipe_074",
+      "material_id": "jincao_solution",
+      "quantity": 5
+    },
+    {
+      "recipe_id": "recipe_075",
+      "material_id": "steel_bottle_2",
+      "quantity": 5
+    },
+    {
+      "recipe_id": "recipe_075",
+      "material_id": "jincao_solution",
+      "quantity": 5
+    },
+    {
+      "recipe_id": "recipe_076",
+      "material_id": "steel_bottle",
+      "quantity": 10
+    },
+    {
+      "recipe_id": "recipe_076",
+      "material_id": "yazhen_solution",
+      "quantity": 5
+    },
+    {
+      "recipe_id": "recipe_077",
+      "material_id": "steel_bottle_2",
+      "quantity": 5
+    },
+    {
+      "recipe_id": "recipe_077",
+      "material_id": "yazhen_solution",
+      "quantity": 5
+    },
+    {
+      "recipe_id": "recipe_078",
+      "material_id": "steel_bottle",
+      "quantity": 10
+    },
+    {
+      "recipe_id": "recipe_078",
+      "material_id": "ground_buckflower_powder",
+      "quantity": 10
+    },
+    {
+      "recipe_id": "recipe_079",
+      "material_id": "steel_bottle",
+      "quantity": 10
+    },
+    {
+      "recipe_id": "recipe_079",
+      "material_id": "ground_citrome_powder",
+      "quantity": 10
+    },
+    {
+      "recipe_id": "recipe_080",
+      "material_id": "cuprium_bottle",
+      "quantity": 10
+    },
+    {
+      "recipe_id": "recipe_080",
+      "material_id": "jincao_solution",
+      "quantity": 10
+    },
+    {
+      "recipe_id": "recipe_081",
+      "material_id": "cuprium_bottle",
+      "quantity": 10
+    },
+    {
+      "recipe_id": "recipe_081",
+      "material_id": "yazhen_solution",
+      "quantity": 10
+    }
+  ],
+  "mining_recipes": [
+    {
+      "mining_recipe_id": "mining_recipe_001",
+      "item_id": "originium_ore",
+      "facility_id": "portable_originium_rig"
+    },
+    {
+      "mining_recipe_id": "mining_recipe_002",
+      "item_id": "originium_ore",
+      "facility_id": "electric_mining_rig"
+    },
+    {
+      "mining_recipe_id": "mining_recipe_003",
+      "item_id": "originium_ore",
+      "facility_id": "electric_mining_rig_mk_ii"
+    },
+    {
+      "mining_recipe_id": "mining_recipe_004",
+      "item_id": "originium_ore",
+      "facility_id": "hydro_mining_rig"
+    },
+    {
+      "mining_recipe_id": "mining_recipe_005",
+      "item_id": "amethyst_ore",
+      "facility_id": "electric_mining_rig"
+    },
+    {
+      "mining_recipe_id": "mining_recipe_006",
+      "item_id": "amethyst_ore",
+      "facility_id": "electric_mining_rig_mk_ii"
+    },
+    {
+      "mining_recipe_id": "mining_recipe_007",
+      "item_id": "amethyst_ore",
+      "facility_id": "hydro_mining_rig"
+    },
+    {
+      "mining_recipe_id": "mining_recipe_008",
+      "item_id": "ferrium_ore",
+      "facility_id": "electric_mining_rig_mk_ii"
+    },
+    {
+      "mining_recipe_id": "mining_recipe_009",
+      "item_id": "ferrium_ore",
+      "facility_id": "hydro_mining_rig"
+    },
+    {
+      "mining_recipe_id": "mining_recipe_010",
+      "item_id": "cuprium_ore",
+      "facility_id": "hydro_mining_rig"
+    },
+    {
+      "mining_recipe_id": "mining_recipe_011",
+      "item_id": "clean_water",
+      "facility_id": "fluid_pump"
+    },
+    {
+      "mining_recipe_id": "mining_recipe_012",
+      "item_id": "sewage",
+      "facility_id": "fluid_pump"
+    }
+  ]
+}
