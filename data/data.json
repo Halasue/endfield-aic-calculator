@@ -744,73 +744,97 @@
       "facility_id": "refining_unit",
       "name_en": "Refining Unit",
       "name_jp": "精錬炉",
-      "process_time": 2
+      "process_time": 2,
+      "sprite_x": 8,
+      "sprite_y": 0
     },
     {
       "facility_id": "shredding_unit",
       "name_en": "Shredding Unit",
       "name_jp": "粉砕機",
-      "process_time": 2
+      "process_time": 2,
+      "sprite_x": 10,
+      "sprite_y": 0
     },
     {
       "facility_id": "fitting_unit",
       "name_en": "Fitting Unit",
       "name_jp": "組立機",
-      "process_time": 2
+      "process_time": 2,
+      "sprite_x": 1,
+      "sprite_y": 0
     },
     {
       "facility_id": "moulding_unit",
       "name_en": "Moulding Unit",
       "name_jp": "塑形機",
-      "process_time": 2
+      "process_time": 2,
+      "sprite_x": 4,
+      "sprite_y": 0
     },
     {
       "facility_id": "planting_unit",
       "name_en": "Planting Unit",
       "name_jp": "栽培機",
-      "process_time": 2
+      "process_time": 2,
+      "sprite_x": 6,
+      "sprite_y": 0
     },
     {
       "facility_id": "seed_picking_unit",
       "name_en": "Seed-Picking Unit",
       "name_jp": "採種機",
-      "process_time": 2
+      "process_time": 2,
+      "sprite_x": 9,
+      "sprite_y": 0
     },
     {
       "facility_id": "water_treatment_unit",
       "name_en": "Water Treatment Unit",
       "name_jp": "汚水処理装置",
-      "process_time": 6
+      "process_time": 6,
+      "sprite_x": 11,
+      "sprite_y": 0
     },
     {
       "facility_id": "gearing_unit",
       "name_en": "Gearing Unit",
       "name_jp": "装備部品加工機",
-      "process_time": 10
+      "process_time": 10,
+      "sprite_x": 2,
+      "sprite_y": 0
     },
     {
       "facility_id": "filling_unit",
       "name_en": "Filling Unit",
       "name_jp": "充填機",
-      "process_time": 10
+      "process_time": 10,
+      "sprite_x": 0,
+      "sprite_y": 0
     },
     {
       "facility_id": "packaging_unit",
       "name_en": "Packaging Unit",
       "name_jp": "包装機",
-      "process_time": 10
+      "process_time": 10,
+      "sprite_x": 5,
+      "sprite_y": 0
     },
     {
       "facility_id": "grinding_unit",
       "name_en": "Grinding Unit",
       "name_jp": "研磨機",
-      "process_time": 2
+      "process_time": 2,
+      "sprite_x": 3,
+      "sprite_y": 0
     },
     {
       "facility_id": "reactor_crucible",
       "name_en": "Reactor Crucible",
       "name_jp": "化学反応炉",
-      "process_time": 2
+      "process_time": 2,
+      "sprite_x": 7,
+      "sprite_y": 0
     }
   ],
   "mining_facilities": [
@@ -1696,7 +1720,7 @@
     },
     {
       "recipe_id": "recipe_055",
-      "material_id": "cryston_part",
+      "material_id": "cryston_fiber",
       "quantity": 1
     },
     {

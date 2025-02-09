@@ -1,83 +1,87 @@
-let cachedSpriteSheet = null; // スプライトシートのキャッシュ
+/**
+ * app.js
+ * ------
+ * メインの初期化処理およびイベント設定
+ */
+
+let recipesData = [], materialsData = [], itemsData = [], facilitiesData = [];
 
 document.addEventListener("DOMContentLoaded", () => {
-    // データを取得して表示する処理
-    Promise.all([
-        fetch('../data/data.json').then(response => response.json()),
-        fetch('../data/sprites.json').then(response => response.json())
-    ])
-    .then(([itemData, spriteData]) => {
-        preloadSpriteSheet(spriteData.spriteSheet); // 画像の事前読み込み
-        createDropdown(itemData.items, spriteData);
+  // app.html から見た相対パスで data.json を読み込む
+  fetch('../data/data.json')
+    .then(response => response.json())
+    .then(data => {
+      recipesData = data.recipes;
+      materialsData = data.materials;
+      itemsData = data.items;
+      facilitiesData = data.facilities;
+      
+      createItemDropdown();
+      
+      document.getElementById('itemSelect').addEventListener('change', recalcProductionFlow);
+      document.getElementById('quantityInput').addEventListener('input', recalcProductionFlow);
+      document.getElementById('timeInput').addEventListener('input', recalcProductionFlow);
+      
+      recalcProductionFlow();
     })
     .catch(error => console.error('Error loading data:', error));
+  
+  // ウィンドウサイズが変更されたときに再描画
+  window.addEventListener('resize', recalcProductionFlow);
 });
 
-// スプライトシートを事前に読み込んでキャッシュする関数
-function preloadSpriteSheet(spriteSheetPath) {
-    cachedSpriteSheet = new Image();
-    cachedSpriteSheet.src = `../images/${spriteSheetPath}`;
+// アイテムドロップダウン作成
+function createItemDropdown() {
+  const select = document.getElementById('itemSelect');
+  select.innerHTML = "";
+  
+  const defaultOption = document.createElement('option');
+  defaultOption.textContent = 'アイテムを選択してください';
+  defaultOption.value = '';
+  select.appendChild(defaultOption);
+  
+  itemsData.forEach(item => {
+    const option = document.createElement('option');
+    option.value = item.item_id;
+    option.textContent = `${item.name_jp} (${item.name_en})`;
+    select.appendChild(option);
+  });
 }
 
-// ドロップダウンリストを作成する関数
-function createDropdown(items, spriteData) {
-    const itemList = document.getElementById('item-list');
-
-    const dropdown = document.createElement('select');
-    dropdown.id = 'item-dropdown';
-
-    // デフォルトのオプション
-    const defaultOption = document.createElement('option');
-    defaultOption.textContent = 'Select an item';
-    defaultOption.value = '';
-    dropdown.appendChild(defaultOption);
-
-    // アイテムをドロップダウンに追加
-    items.forEach(item => {
-        const option = document.createElement('option');
-        option.value = item.name_en;
-        option.textContent = `${item.name_jp} (${item.name_en})`;
-        dropdown.appendChild(option);
+// 総設備数の計算：再帰的に equipment ノードの required 値を合計
+function computeTotalEquipment(node) {
+  let total = 0;
+  if(node.type === "equipment") total += node.required;
+  if(node.children) {
+    node.children.forEach(child => {
+      total += computeTotalEquipment(child);
     });
-
-    // 選択時のイベントリスナー
-    dropdown.addEventListener('change', (event) => {
-        const selectedItem = items.find(item => item.name_en === event.target.value);
-        displaySelectedItem(selectedItem, spriteData);
-    });
-
-    itemList.appendChild(dropdown);
+  }
+  return total;
 }
 
-// 選択されたアイテムを表示する関数
-function displaySelectedItem(item, spriteData) {
-    const selectedItemDisplay = document.getElementById('selected-item') || document.createElement('div');
-    selectedItemDisplay.id = 'selected-item';
-    selectedItemDisplay.innerHTML = ''; // クリア
-
-    if (item) {
-        const text = document.createElement('p');
-        text.textContent = `Selected Item: ${item.name_jp} (${item.name_en})`;
-
-        const icon = document.createElement('div');
-        icon.style.width = `${spriteData.tileSize}px`;
-        icon.style.height = `${spriteData.tileSize}px`;
-        icon.style.backgroundImage = `url(${cachedSpriteSheet.src})`;
-
-        // デバッグ用ログ
-        console.log(`Item: ${item.name_en}, X: ${item.sprite_x}, Y: ${item.sprite_y}`);
-
-        // 背景位置の計算（正しい座標計算）
-        const posX = -(item.sprite_x * spriteData.tileSize);
-        const posY = -(item.sprite_y * spriteData.tileSize);
-        icon.style.backgroundPosition = `${posX}px ${posY}px`;
-
-        // スプライトシート全体のサイズを指定
-        icon.style.backgroundSize = `${spriteData.sheetWidth}px ${spriteData.sheetHeight}px`;
-
-        selectedItemDisplay.appendChild(text);
-        selectedItemDisplay.appendChild(icon);
-    }
-
-    document.getElementById('item-list').appendChild(selectedItemDisplay);
+// 入力変更に応じた再計算
+function recalcProductionFlow() {
+  const selectedItemId = document.getElementById('itemSelect').value;
+  if (!selectedItemId) return;
+  
+  const targetProduction = parseFloat(document.getElementById('quantityInput').value);
+  const timePeriod = parseFloat(document.getElementById('timeInput').value);
+  if (isNaN(targetProduction) || isNaN(timePeriod) || targetProduction <= 0 || timePeriod <= 0) return;
+  
+  // 1分あたり必要な個数
+  const requiredPerMinute = targetProduction / timePeriod;
+  const treeData = buildTreeForItem(selectedItemId, requiredPerMinute, new Set());
+  
+  // #svgContainer 内だけをクリアしてツリー描画
+  const svgContainer = document.getElementById('svgContainer');
+  svgContainer.innerHTML = "";
+  renderTree(treeData, svgContainer);
+  
+  // 総設備数の計算
+  const totalEquipment = computeTotalEquipment(treeData);
+  const totalDiv = document.getElementById("totalEquipment");
+  if(totalDiv) {
+    totalDiv.textContent = "総設備数: " + totalEquipment;
+  }
 }
