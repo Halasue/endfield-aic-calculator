@@ -83,5 +83,28 @@ function recalcProductionFlow() {
   const totalDiv = document.getElementById("totalEquipment");
   if(totalDiv) {
     totalDiv.textContent = "総設備数: " + totalEquipment;
+  }  
+}
+
+// デバッグ用
+function debugLog(message) {
+  const debugDiv = document.getElementById('debug');
+  const p = document.createElement('p');
+  p.textContent = message;
+  debugDiv.appendChild(p);
+  
+  // 10行以上になったら古いログを削除
+  if (debugDiv.childNodes.length > 10) {
+    debugDiv.removeChild(debugDiv.firstChild);
   }
+}
+
+function debugUpdate(message) {
+  const debugDiv = document.getElementById('debug');
+  debugDiv.textContent = message;
+}
+
+function debugClear() {
+  const debugDiv = document.getElementById('debug');
+  debugDiv.textContent = "";
 }

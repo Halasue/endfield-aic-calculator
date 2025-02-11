@@ -1,7 +1,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  height: 100vh; /* ビューポート全体 */
+  height: 100%; /* ビューポート全体 */
 }
 
 #app {
@@ -12,16 +12,19 @@ html, body {
 
 .inputArea {
   flex: 0 0 60px;  /* 固定高さ */
+  box-sizing: border-box;
 }
 
 #productionFlow {
-  flex: 1;  /* 残り領域を占める */
-  position: relative;
+  flex: 1;        /* 残り領域を全部使う */
+  min-height: 0;  /* Flexbox で高さを受け取れるように */
+  position: relative; 
   overflow: hidden;
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+  border: 3px solid red; /* デバッグ用 */
 }
 
 #svgContainer {
   width: 100%;
   height: 100%;
+  /* border: 3px dashed blue; /* デバッグ用 */
 }

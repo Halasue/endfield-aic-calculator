@@ -1,49 +1,65 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Endfield AIC Calculator - D3.js Tree View</title>
-  <!-- 外部CSSファイルの読み込み -->
-  <link rel="stylesheet" href="app.css">
-</head>
-<body>
-  <header>
-    <h1>Endfield AIC Calculator - D3.js Tree View</h1>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Endfield AIC Calculator - D3.js Tree View</title>
+    <!-- 外部CSSファイルの読み込み -->
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Endfield AIC Calculator - D3.js Tree View</h1>
+    </header>
 
-  <main id="app">
-    <div class="inputArea">
-      <!-- アイテム選択 -->
-      <label for="itemSelect">アイテム選択:</label>
-      <select id="itemSelect"></select>
-      
-      <!-- 目標生産量(個) と 生産時間(分) -->
-      <label for="quantityInput">目標生産量 (個):</label>
-      <input type="number" id="quantityInput" value="100" min="1">
-      
-      <label for="timeInput">生産時間 (分):</label>
-      <input type="number" id="timeInput" value="60" min="1">
-    </div>
-    
-    <!-- ツリー表示領域 -->
-    <div id="productionFlow">
-      <!-- これらの要素は常に表示する -->
-      <button id="resetZoom">リセット</button>
-      <div id="svgContainer"></div>
-      <div id="totalEquipment"></div>
-    </div>
-  </main>
+    <main id="app">
+      <!-- デバッグ用 -->
+      <div
+        id="debug"
+        style="
+          position: fixed;
+          bottom: 10px;
+          left: 10px;
+          background: rgba(0, 0, 0, 0.7);
+          color: white;
+          padding: 10px;
+          font-size: 12px;
+          border-radius: 5px;
+          z-index: 1000;
+        "
+      ></div>
 
-  <footer>
-    <p>&copy; 2025 Endfield AIC Calculator</p>
-  </footer>
+      <div class="inputArea">
+        <!-- アイテム選択 -->
+        <label for="itemSelect">アイテム選択:</label>
+        <select id="itemSelect"></select>
 
-  <!-- D3.js v6 の読み込み -->
-  <script src="https://d3js.org/d3.v6.min.js"></script>
-  <!-- 分割したJSファイル群（app.html からの相対パス） -->
-  <script src="../js/treeDataBuilder.js"></script>
-  <script src="../js/treeRenderer.js"></script>
-  <script src="../js/app.js"></script>
-</body>
+        <!-- 目標生産量(個) と 生産時間(分) -->
+        <label for="quantityInput">目標生産量 (個):</label>
+        <input type="number" id="quantityInput" value="100" min="1" />
+
+        <label for="timeInput">生産時間 (分):</label>
+        <input type="number" id="timeInput" value="60" min="1" />
+      </div>
+
+      <!-- ツリー表示領域 -->
+      <div id="productionFlow">
+        <!-- これらの要素は常に表示する -->
+        <button id="resetZoom">リセット</button>
+        <div id="svgContainer"></div>
+        <div id="totalEquipment"></div>
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Endfield AIC Calculator</p>
+    </footer>
+
+    <!-- D3.js v6 の読み込み -->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <!-- 分割したJSファイル群（app.html からの相対パス） -->
+    <script src="../js/treeDataBuilder.js"></script>
+    <script src="../js/treeRenderer.js"></script>
+    <script src="../js/app.js"></script>
+  </body>
 </html>
