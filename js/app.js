@@ -8,7 +8,7 @@ let recipesData = [],
   materialsData = [],
   itemsData = [],
   facilitiesData = [],
-  spriteData = [];
+  spriteData = {};
 
 document.addEventListener("DOMContentLoaded", () => {
   // data.json と sprites.json を読み込む
