@@ -169,7 +169,7 @@ function drawLinks(g, root) {
       "d",
       d3
         .linkHorizontal()
-        .x((d) => d.y)
+        .x((d) => -d.y) // 左右反転
         .y((d) => d.x)
     )
     .attr("fill", "none")
@@ -190,7 +190,8 @@ function drawNodes(g, root) {
     .enter()
     .append("g")
     .attr("class", "node")
-    .attr("transform", (d) => `translate(${d.y}, ${d.x})`);
+    .attr("transform", (d) => "translate(" + -d.y + "," + d.x + ")"); // 左右反転
+  // .attr("transform", (d) => `translate(${d.y}, ${d.x})`);
 
   // ノードの矩形を描画
   node
@@ -264,7 +265,7 @@ function applyInitialTransform(zoom, svg, root, width, height) {
   const desiredScale = Math.min(scaleX, scaleY);
 
   // ツリー全体の中心を求める
-  const centerX = (yExtent[0] + yExtent[1]) / 2;
+  const centerX = -((yExtent[0] + yExtent[1]) / 2); //左右反転
   const centerY = (xExtent[0] + xExtent[1]) / 2;
 
   // 初期変換：ツリー中心をコンテナの中央に持ってくる
