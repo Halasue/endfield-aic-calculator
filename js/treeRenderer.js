@@ -190,8 +190,7 @@ function drawNodes(g, root) {
     .enter()
     .append("g")
     .attr("class", "node")
-    .attr("transform", (d) => "translate(" + -d.y + "," + d.x + ")"); // 左右反転
-  // .attr("transform", (d) => `translate(${d.y}, ${d.x})`);
+    .attr("transform", (d) => "translate(" + -d.y + "," + d.x + ")"); // 左右反
 
   // ノードの矩形を描画
   node

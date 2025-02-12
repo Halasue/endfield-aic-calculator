@@ -4,44 +4,53 @@
  * メインの初期化処理およびイベント設定
  */
 
-let recipesData = [], materialsData = [], itemsData = [], facilitiesData = [];
+let recipesData = [],
+  materialsData = [],
+  itemsData = [],
+  facilitiesData = [];
 
 document.addEventListener("DOMContentLoaded", () => {
   // app.html から見た相対パスで data.json を読み込む
-  fetch('../data/data.json')
-    .then(response => response.json())
-    .then(data => {
+  fetch("../data/data.json")
+    .then((response) => response.json())
+    .then((data) => {
       recipesData = data.recipes;
       materialsData = data.materials;
       itemsData = data.items;
       facilitiesData = data.facilities;
-      
+
       createItemDropdown();
-      
-      document.getElementById('itemSelect').addEventListener('change', recalcProductionFlow);
-      document.getElementById('quantityInput').addEventListener('input', recalcProductionFlow);
-      document.getElementById('timeInput').addEventListener('input', recalcProductionFlow);
-      
+
+      document
+        .getElementById("itemSelect")
+        .addEventListener("change", recalcProductionFlow);
+      document
+        .getElementById("quantityInput")
+        .addEventListener("input", recalcProductionFlow);
+      document
+        .getElementById("timeInput")
+        .addEventListener("input", recalcProductionFlow);
+
       recalcProductionFlow();
     })
-    .catch(error => console.error('Error loading data:', error));
-  
+    .catch((error) => console.error("Error loading data:", error));
+
   // ウィンドウサイズが変更されたときに再描画
-  window.addEventListener('resize', recalcProductionFlow);
+  window.addEventListener("resize", recalcProductionFlow);
 });
 
 // アイテムドロップダウン作成
 function createItemDropdown() {
-  const select = document.getElementById('itemSelect');
+  const select = document.getElementById("itemSelect");
   select.innerHTML = "";
-  
-  const defaultOption = document.createElement('option');
-  defaultOption.textContent = 'アイテムを選択してください';
-  defaultOption.value = '';
+
+  const defaultOption = document.createElement("option");
+  defaultOption.textContent = "アイテムを選択してください";
+  defaultOption.value = "";
   select.appendChild(defaultOption);
-  
-  itemsData.forEach(item => {
-    const option = document.createElement('option');
+
+  itemsData.forEach((item) => {
+    const option = document.createElement("option");
     option.value = item.item_id;
     option.textContent = `${item.name_jp} (${item.name_en})`;
     select.appendChild(option);
@@ -51,9 +60,9 @@ function createItemDropdown() {
 // 総設備数の計算：再帰的に equipment ノードの required 値を合計
 function computeTotalEquipment(node) {
   let total = 0;
-  if(node.type === "equipment") total += node.required;
-  if(node.children) {
-    node.children.forEach(child => {
+  if (node.type === "equipment") total += node.required;
+  if (node.children) {
+    node.children.forEach((child) => {
       total += computeTotalEquipment(child);
     });
   }
@@ -62,37 +71,49 @@ function computeTotalEquipment(node) {
 
 // 入力変更に応じた再計算
 function recalcProductionFlow() {
-  const selectedItemId = document.getElementById('itemSelect').value;
+  const selectedItemId = document.getElementById("itemSelect").value;
   if (!selectedItemId) return;
-  
-  const targetProduction = parseFloat(document.getElementById('quantityInput').value);
-  const timePeriod = parseFloat(document.getElementById('timeInput').value);
-  if (isNaN(targetProduction) || isNaN(timePeriod) || targetProduction <= 0 || timePeriod <= 0) return;
-  
+
+  const targetProduction = parseFloat(
+    document.getElementById("quantityInput").value
+  );
+  const timePeriod = parseFloat(document.getElementById("timeInput").value);
+  if (
+    isNaN(targetProduction) ||
+    isNaN(timePeriod) ||
+    targetProduction <= 0 ||
+    timePeriod <= 0
+  )
+    return;
+
   // 1分あたり必要な個数
   const requiredPerMinute = targetProduction / timePeriod;
-  const treeData = buildTreeForItem(selectedItemId, requiredPerMinute, new Set());
-  
+  const treeData = buildTreeForItem(
+    selectedItemId,
+    requiredPerMinute,
+    new Set()
+  );
+
   // #svgContainer 内だけをクリアしてツリー描画
-  const svgContainer = document.getElementById('svgContainer');
+  const svgContainer = document.getElementById("svgContainer");
   svgContainer.innerHTML = "";
   renderTree(treeData, svgContainer);
-  
+
   // 総設備数の計算
   const totalEquipment = computeTotalEquipment(treeData);
   const totalDiv = document.getElementById("totalEquipment");
-  if(totalDiv) {
+  if (totalDiv) {
     totalDiv.textContent = "総設備数: " + totalEquipment;
-  }  
+  }
 }
 
 // デバッグ用
 function debugLog(message) {
-  const debugDiv = document.getElementById('debug');
-  const p = document.createElement('p');
+  const debugDiv = document.getElementById("debug");
+  const p = document.createElement("p");
   p.textContent = message;
   debugDiv.appendChild(p);
-  
+
   // 10行以上になったら古いログを削除
   if (debugDiv.childNodes.length > 10) {
     debugDiv.removeChild(debugDiv.firstChild);
@@ -100,11 +121,11 @@ function debugLog(message) {
 }
 
 function debugUpdate(message) {
-  const debugDiv = document.getElementById('debug');
+  const debugDiv = document.getElementById("debug");
   debugDiv.textContent = message;
 }
 
 function debugClear() {
-  const debugDiv = document.getElementById('debug');
+  const debugDiv = document.getElementById("debug");
   debugDiv.textContent = "";
 }
