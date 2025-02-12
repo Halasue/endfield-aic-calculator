@@ -1,11 +1,11 @@
 {
     "categories": {
       "items": {
-        "spriteSheet": "items_sprite_sheet_364b1619d235d59032b9397d06a2749c.png",
+        "spriteSheet": "../images/items_sprite_sheet_364b1619d235d59032b9397d06a2749c.png",
         "tileSize": 256
       },
       "facilities": {
-        "spriteSheet": "facilities_sprite_sheet_d9925687b986149885f1044a3e3f1ad4.png",
+        "spriteSheet": "../images/facilities_sprite_sheet_d9925687b986149885f1044a3e3f1ad4.png",
         "tileSize": 256
       }
     }

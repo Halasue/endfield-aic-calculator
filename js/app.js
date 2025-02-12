@@ -7,17 +7,21 @@
 let recipesData = [],
   materialsData = [],
   itemsData = [],
-  facilitiesData = [];
+  facilitiesData = [],
+  spriteData = [];
 
 document.addEventListener("DOMContentLoaded", () => {
-  // app.html から見た相対パスで data.json を読み込む
-  fetch("../data/data.json")
-    .then((response) => response.json())
-    .then((data) => {
+  // data.json と sprites.json を読み込む
+  Promise.all([
+    fetch("../data/data.json").then((response) => response.json()),
+    fetch("../data/sprites.json").then((response) => response.json()),
+  ])
+    .then(([data, sprites]) => {
       recipesData = data.recipes;
       materialsData = data.materials;
       itemsData = data.items;
       facilitiesData = data.facilities;
+      spriteData = sprites;
 
       createItemDropdown();
 

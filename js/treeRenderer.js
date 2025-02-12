@@ -190,7 +190,7 @@ function drawNodes(g, root) {
     .enter()
     .append("g")
     .attr("class", "node")
-    .attr("transform", (d) => "translate(" + -d.y + "," + d.x + ")"); // 左右反
+    .attr("transform", (d) => "translate(" + -d.y + "," + d.x + ")"); // 左右反転
 
   // ノードの矩形を描画
   node
@@ -227,9 +227,9 @@ function drawNodes(g, root) {
     .selectAll("tspan")
     .data((d) => {
       if (d.data.type === "equipment") {
-        return [d.data.name, d.data.required];
+        return [d.data.id, d.data.required];
       } else {
-        return [d.data.name, d.data.required.toFixed(2) + "/min"];
+        return [d.data.id, d.data.required.toFixed(2) + "/min"];
       }
     })
     .enter()

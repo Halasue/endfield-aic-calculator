@@ -27,13 +27,26 @@ function getItem(itemId) {
 
 /**
  * アイテムノードを作成する
- * アイテムが存在しない場合は itemId をそのまま表示する。
+ * アイテムが存在しない場合は Error を表示する。
  */
-function createItemNode(item, itemId, requiredPerMinute) {
+function createItemNode(item, requiredPerMinute) {
   return {
     type: "item",
-    name: item ? item.name_en : itemId,
+    id: item ? item.item_id : "Error", // 該当アイテムが存在しない場合 Errorを表示
     required: requiredPerMinute,
+    children: [],
+  };
+}
+
+/**
+ * 設備ノードを作成する
+ * 設備が存在しない場合は Error を表示する。
+ */
+function createEquipmentNode(facility, equipmentCount) {
+  return {
+    type: "equipment",
+    id: facility.facility_id ? facility.facility_id : "Error", // 該当設備が存在しない場合 Errorを表示
+    required: equipmentCount,
     children: [],
   };
 }
@@ -59,12 +72,7 @@ function processRecipe(recipe, requiredPerMinute, visited) {
   );
 
   // 設備ノードを作成
-  const equipmentNode = {
-    type: "equipment",
-    name: facility.name_en,
-    required: equipmentCount,
-    children: [],
-  };
+  const equipmentNode = createEquipmentNode(facility, equipmentCount);
 
   // 該当レシピの原料情報を取得し、各原料について再帰的に処理
   const mats = materialsData.filter((m) => m.recipe_id === recipe.recipe_id);
@@ -100,8 +108,8 @@ function buildTreeForItem(itemId, requiredPerMinute, visited) {
   // アイテム情報を取得
   const item = getItem(itemId);
 
-  // アイテムノードを作成（該当アイテムが存在しない場合は itemId を表示）
-  let node = createItemNode(item, itemId, requiredPerMinute);
+  // アイテムノードを作成
+  let node = createItemNode(item, requiredPerMinute);
 
   // 「種」の場合はこれ以上分解せず、再帰を打ち切る
   if (item && item.is_seed) {
