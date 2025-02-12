@@ -21,6 +21,9 @@ const NODE_RADIUS = 10;
 const NODE_VERTICAL_SPACING = 60;
 const NODE_HORIZONTAL_SPACING = 200;
 
+// ツリー初期表示時の左右余白
+const TREE_PADDING = 10;
+
 // 必要に応じてズームの制限を設定
 const ZOOM_SCALE_MIN = 0.2;
 const ZOOM_SCALE_MAX = 8;
@@ -256,7 +259,7 @@ function applyInitialTransform(zoom, svg, root, width, height) {
   const { treeWidth, treeHeight, xExtent, yExtent } = getTreeSize(root);
 
   // 表示領域に収めるためのスケールを計算
-  const scaleX = width / treeWidth;
+  const scaleX = (width - 2 * TREE_PADDING) / treeWidth;
   const scaleY = height / treeHeight;
   const desiredScale = Math.min(scaleX, scaleY);
 
