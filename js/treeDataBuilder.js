@@ -22,7 +22,7 @@
  * （見つからなければ null を返す）
  */
 function getItem(itemId) {
-  return itemsData.find((x) => x.item_id === itemId) || null;
+    return itemsData.find((x) => x.item_id === itemId) || null;
 }
 
 /**
@@ -30,12 +30,12 @@ function getItem(itemId) {
  * アイテムが存在しない場合は Error を表示する。
  */
 function createItemNode(item, requiredPerMinute) {
-  return {
-    type: "item",
-    id: item ? item.item_id : "Error", // 該当アイテムが存在しない場合 Errorを表示
-    required: requiredPerMinute,
-    children: [],
-  };
+    return {
+        type: "item",
+        id: item ? item.item_id : "Error", // 該当アイテムが存在しない場合 Errorを表示
+        required: requiredPerMinute,
+        children: [],
+    };
 }
 
 /**
@@ -43,12 +43,12 @@ function createItemNode(item, requiredPerMinute) {
  * 設備が存在しない場合は Error を表示する。
  */
 function createEquipmentNode(facility, equipmentCount) {
-  return {
-    type: "equipment",
-    id: facility.facility_id ? facility.facility_id : "Error", // 該当設備が存在しない場合 Errorを表示
-    required: equipmentCount,
-    children: [],
-  };
+    return {
+        type: "equipment",
+        id: facility.facility_id ? facility.facility_id : "Error", // 該当設備が存在しない場合 Errorを表示
+        required: equipmentCount,
+        children: [],
+    };
 }
 
 /**
@@ -56,40 +56,40 @@ function createEquipmentNode(facility, equipmentCount) {
  * 該当レシピの原料について再帰的にツリーを構築して子ノードに追加する。
  */
 function processRecipe(recipe, requiredPerMinute, visited) {
-  // 対応する設備情報を取得
-  const facility = facilitiesData.find(
-    (f) => f.facility_id === recipe.facility_id
-  );
-  if (!facility) return null; // 設備情報が見つからなければ処理をスキップ
-
-  // 1サイクルあたりの処理時間と出力数を取得
-  const processTime = facility.process_time; // 単位: 分
-  const outputQuantity = recipe.output_quantity; // 1サイクルの出力数
-
-  // 必要な設備数を計算（切り上げ）
-  const equipmentCount = Math.ceil(
-    (requiredPerMinute * processTime) / outputQuantity
-  );
-
-  // 設備ノードを作成
-  const equipmentNode = createEquipmentNode(facility, equipmentCount);
-
-  // 該当レシピの原料情報を取得し、各原料について再帰的に処理
-  const mats = materialsData.filter((m) => m.recipe_id === recipe.recipe_id);
-  mats.forEach((mat) => {
-    // 原料の1分あたり必要数を計算
-    const materialRequired =
-      (requiredPerMinute * mat.quantity) / outputQuantity;
-    // 再帰呼び出し時は visited のコピーを渡して、サイクル防止を行う
-    const childItemNode = buildTreeForItem(
-      mat.material_id,
-      materialRequired,
-      new Set(visited)
+    // 対応する設備情報を取得
+    const facility = facilitiesData.find(
+        (f) => f.facility_id === recipe.facility_id
     );
-    equipmentNode.children.push(childItemNode);
-  });
+    if (!facility) return null; // 設備情報が見つからなければ処理をスキップ
 
-  return equipmentNode;
+    // 1サイクルあたりの処理時間と出力数を取得
+    const processTime = facility.process_time; // 単位: 分
+    const outputQuantity = recipe.output_quantity; // 1サイクルの出力数
+
+    // 必要な設備数を計算（切り上げ）
+    const equipmentCount = Math.ceil(
+        (requiredPerMinute * processTime) / outputQuantity
+    );
+
+    // 設備ノードを作成
+    const equipmentNode = createEquipmentNode(facility, equipmentCount);
+
+    // 該当レシピの原料情報を取得し、各原料について再帰的に処理
+    const mats = materialsData.filter((m) => m.recipe_id === recipe.recipe_id);
+    mats.forEach((mat) => {
+        // 原料の1分あたり必要数を計算
+        const materialRequired =
+            (requiredPerMinute * mat.quantity) / outputQuantity;
+        // 再帰呼び出し時は visited のコピーを渡して、サイクル防止を行う
+        const childItemNode = buildTreeForItem(
+            mat.material_id,
+            materialRequired,
+            new Set(visited)
+        );
+        equipmentNode.children.push(childItemNode);
+    });
+
+    return equipmentNode;
 }
 
 /* =========================================
@@ -105,34 +105,34 @@ function processRecipe(recipe, requiredPerMinute, visited) {
  * @returns {Object} 構築されたツリー構造のノード
  */
 function buildTreeForItem(itemId, requiredPerMinute, visited) {
-  // アイテム情報を取得
-  const item = getItem(itemId);
+    // アイテム情報を取得
+    const item = getItem(itemId);
 
-  // アイテムノードを作成
-  let node = createItemNode(item, requiredPerMinute);
+    // アイテムノードを作成
+    let node = createItemNode(item, requiredPerMinute);
 
-  // 「種」の場合はこれ以上分解せず、再帰を打ち切る
-  if (item && item.is_seed) {
-    return node;
-  }
-
-  // すでに処理済みの場合はサイクル防止のため、再帰を打ち切る
-  if (visited.has(itemId)) {
-    return node;
-  }
-  visited.add(itemId);
-
-  // このアイテムを生産するレシピを取得（複数あれば各レシピで枝を作成）
-  const recipes = recipesData.filter((r) => r.item_id === itemId);
-  recipes.forEach((recipe) => {
-    const equipmentNode = processRecipe(recipe, requiredPerMinute, visited);
-    if (equipmentNode) {
-      node.children.push(equipmentNode);
+    // 「種」の場合はこれ以上分解せず、再帰を打ち切る
+    if (item && item.is_seed) {
+        return node;
     }
-  });
 
-  // 他の枝への影響を避けるため、visited から削除
-  visited.delete(itemId);
+    // すでに処理済みの場合はサイクル防止のため、再帰を打ち切る
+    if (visited.has(itemId)) {
+        return node;
+    }
+    visited.add(itemId);
 
-  return node;
+    // このアイテムを生産するレシピを取得（複数あれば各レシピで枝を作成）
+    const recipes = recipesData.filter((r) => r.item_id === itemId);
+    recipes.forEach((recipe) => {
+        const equipmentNode = processRecipe(recipe, requiredPerMinute, visited);
+        if (equipmentNode) {
+            node.children.push(equipmentNode);
+        }
+    });
+
+    // 他の枝への影響を避けるため、visited から削除
+    visited.delete(itemId);
+
+    return node;
 }

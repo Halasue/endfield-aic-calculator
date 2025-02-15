@@ -41,29 +41,33 @@ const ZOOM_SCALE_MAX = 5;
  * @returns {Object} ツリーの横幅、縦幅、x軸の最小・最大、y軸の最小・最大
  */
 function getTreeSize(root) {
-  const allNodes = root.descendants();
+    const allNodes = root.descendants();
 
-  // 各ノードの上下方向（d.x）の座標を求める
-  const xValues = allNodes.flatMap((d) => {
-    const nodeHeight =
-      d.data.type === "equipment" ? EQUIPMENT_NODE_HEIGHT : ITEM_NODE_HEIGHT;
-    return [d.x - nodeHeight / 2, d.x + nodeHeight / 2];
-  });
+    // 各ノードの上下方向（d.x）の座標を求める
+    const xValues = allNodes.flatMap((d) => {
+        const nodeHeight =
+            d.data.type === "equipment"
+                ? EQUIPMENT_NODE_HEIGHT
+                : ITEM_NODE_HEIGHT;
+        return [d.x - nodeHeight / 2, d.x + nodeHeight / 2];
+    });
 
-  // 各ノードの左右方向（d.y）の座標を求める
-  const yValues = allNodes.flatMap((d) => {
-    const nodeWidth =
-      d.data.type === "equipment" ? EQUIPMENT_NODE_WIDTH : ITEM_NODE_WIDTH;
-    return [d.y - nodeWidth / 2, d.y + nodeWidth / 2];
-  });
+    // 各ノードの左右方向（d.y）の座標を求める
+    const yValues = allNodes.flatMap((d) => {
+        const nodeWidth =
+            d.data.type === "equipment"
+                ? EQUIPMENT_NODE_WIDTH
+                : ITEM_NODE_WIDTH;
+        return [d.y - nodeWidth / 2, d.y + nodeWidth / 2];
+    });
 
-  const xExtent = d3.extent(xValues); // [最小, 最大] (上下)
-  const yExtent = d3.extent(yValues); // [最小, 最大] (左右)
+    const xExtent = d3.extent(xValues); // [最小, 最大] (上下)
+    const yExtent = d3.extent(yValues); // [最小, 最大] (左右)
 
-  const treeWidth = yExtent[1] - yExtent[0]; // 横幅
-  const treeHeight = xExtent[1] - xExtent[0]; // 高さ
+    const treeWidth = yExtent[1] - yExtent[0]; // 横幅
+    const treeHeight = xExtent[1] - xExtent[0]; // 高さ
 
-  return { treeWidth, treeHeight, xExtent, yExtent };
+    return { treeWidth, treeHeight, xExtent, yExtent };
 }
 
 /**
@@ -73,18 +77,18 @@ function getTreeSize(root) {
  * @returns {Object} SVG要素、グループ要素、コンテナの横幅、コンテナの高さ
  */
 function createSVG(container) {
-  const containerEl = d3.select(container).node();
-  const { width, height } = containerEl.getBoundingClientRect();
+    const containerEl = d3.select(container).node();
+    const { width, height } = containerEl.getBoundingClientRect();
 
-  const svg = d3
-    .select(container)
-    .append("svg")
-    .attr("viewBox", `0 0 ${width} ${height}`)
-    .attr("preserveAspectRatio", "xMidYMid slice");
+    const svg = d3
+        .select(container)
+        .append("svg")
+        .attr("viewBox", `0 0 ${width} ${height}`)
+        .attr("preserveAspectRatio", "xMidYMid slice");
 
-  const g = svg.append("g");
+    const g = svg.append("g");
 
-  return { svg, g, width, height };
+    return { svg, g, width, height };
 }
 
 /**
@@ -97,15 +101,15 @@ function createSVG(container) {
  * @returns {d3.ZoomBehavior} ズーム動作
  */
 function setupZoom(svg, g, width, height) {
-  const zoom = d3
-    .zoom()
-    .scaleExtent([ZOOM_SCALE_MIN, ZOOM_SCALE_MAX])
-    .on("zoom", (event) => {
-      g.attr("transform", event.transform);
-    });
+    const zoom = d3
+        .zoom()
+        .scaleExtent([ZOOM_SCALE_MIN, ZOOM_SCALE_MAX])
+        .on("zoom", (event) => {
+            g.attr("transform", event.transform);
+        });
 
-  svg.call(zoom);
-  return zoom;
+    svg.call(zoom);
+    return zoom;
 }
 
 /**
@@ -114,43 +118,43 @@ function setupZoom(svg, g, width, height) {
  * @param {d3.Selection} svg - SVG 要素
  */
 function addDropShadow(svg) {
-  const defs = svg.append("defs");
-  const filter = defs
-    .append("filter")
-    .attr("id", "dropShadow")
-    .attr("x", "-20%")
-    .attr("y", "-20%")
-    .attr("width", "140%")
-    .attr("height", "140%");
+    const defs = svg.append("defs");
+    const filter = defs
+        .append("filter")
+        .attr("id", "dropShadow")
+        .attr("x", "-20%")
+        .attr("y", "-20%")
+        .attr("width", "140%")
+        .attr("height", "140%");
 
-  filter
-    .append("feFlood")
-    .attr("flood-color", "rgba(20, 20, 20, 0.5)")
-    .attr("result", "colorBlur");
+    filter
+        .append("feFlood")
+        .attr("flood-color", "rgba(20, 20, 20, 0.5)")
+        .attr("result", "colorBlur");
 
-  filter
-    .append("feGaussianBlur")
-    .attr("in", "SourceAlpha")
-    .attr("stdDeviation", 3)
-    .attr("result", "blur");
+    filter
+        .append("feGaussianBlur")
+        .attr("in", "SourceAlpha")
+        .attr("stdDeviation", 3)
+        .attr("result", "blur");
 
-  filter
-    .append("feComposite")
-    .attr("in", "colorBlur")
-    .attr("in2", "blur")
-    .attr("operator", "in")
-    .attr("result", "coloredShadow");
+    filter
+        .append("feComposite")
+        .attr("in", "colorBlur")
+        .attr("in2", "blur")
+        .attr("operator", "in")
+        .attr("result", "coloredShadow");
 
-  filter
-    .append("feOffset")
-    .attr("in", "coloredShadow")
-    .attr("dx", 2)
-    .attr("dy", 2)
-    .attr("result", "offsetBlur");
+    filter
+        .append("feOffset")
+        .attr("in", "coloredShadow")
+        .attr("dx", 2)
+        .attr("dy", 2)
+        .attr("result", "offsetBlur");
 
-  const feMerge = filter.append("feMerge");
-  feMerge.append("feMergeNode").attr("in", "offsetBlur");
-  feMerge.append("feMergeNode").attr("in", "SourceGraphic");
+    const feMerge = filter.append("feMerge");
+    feMerge.append("feMergeNode").attr("in", "offsetBlur");
+    feMerge.append("feMergeNode").attr("in", "SourceGraphic");
 }
 
 /**
@@ -160,21 +164,21 @@ function addDropShadow(svg) {
  * @param {Object} root - ツリーのルート（d3.hierarchy オブジェクト）
  */
 function drawLinks(g, root) {
-  g.selectAll(".link")
-    .data(root.links())
-    .enter()
-    .append("path")
-    .attr("class", "link")
-    .attr(
-      "d",
-      d3
-        .linkHorizontal()
-        .x((d) => -d.y) // 左右反転
-        .y((d) => d.x)
-    )
-    .attr("fill", "none")
-    .attr("stroke", "#ccc")
-    .attr("stroke-width", 2);
+    g.selectAll(".link")
+        .data(root.links())
+        .enter()
+        .append("path")
+        .attr("class", "link")
+        .attr(
+            "d",
+            d3
+                .linkHorizontal()
+                .x((d) => -d.y) // 左右反転
+                .y((d) => d.x)
+        )
+        .attr("fill", "none")
+        .attr("stroke", "#ccc")
+        .attr("stroke-width", 2);
 }
 
 /**
@@ -184,65 +188,67 @@ function drawLinks(g, root) {
  * @param {Object} root - ツリーのルート（d3.hierarchy オブジェクト）
  */
 function drawNodes(g, root) {
-  const node = g
-    .selectAll(".node")
-    .data(root.descendants())
-    .enter()
-    .append("g")
-    .attr("class", "node")
-    .attr("transform", (d) => "translate(" + -d.y + "," + d.x + ")"); // 左右反転
+    const node = g
+        .selectAll(".node")
+        .data(root.descendants())
+        .enter()
+        .append("g")
+        .attr("class", "node")
+        .attr("transform", (d) => "translate(" + -d.y + "," + d.x + ")"); // 左右反転
 
-  // ノードの矩形を描画
-  node
-    .append("rect")
-    .attr("width", (d) =>
-      d.data.type === "equipment" ? EQUIPMENT_NODE_WIDTH : ITEM_NODE_WIDTH
-    )
-    .attr("height", (d) =>
-      d.data.type === "equipment" ? EQUIPMENT_NODE_HEIGHT : ITEM_NODE_HEIGHT
-    )
-    .attr("x", (d) =>
-      d.data.type === "equipment"
-        ? -EQUIPMENT_NODE_WIDTH / 2
-        : -ITEM_NODE_WIDTH / 2
-    )
-    .attr("y", (d) =>
-      d.data.type === "equipment"
-        ? -EQUIPMENT_NODE_HEIGHT / 2
-        : -ITEM_NODE_HEIGHT / 2
-    )
-    .attr("rx", NODE_RADIUS)
-    .attr("ry", NODE_RADIUS)
-    .attr("fill", (d) =>
-      d.data.type === "equipment" ? "rgb(51,51,51)" : "rgb(245,245,245)"
-    )
-    .attr("stroke", "none")
-    .attr("filter", "url(#dropShadow)");
+    // ノードの矩形を描画
+    node.append("rect")
+        .attr("width", (d) =>
+            d.data.type === "equipment" ? EQUIPMENT_NODE_WIDTH : ITEM_NODE_WIDTH
+        )
+        .attr("height", (d) =>
+            d.data.type === "equipment"
+                ? EQUIPMENT_NODE_HEIGHT
+                : ITEM_NODE_HEIGHT
+        )
+        .attr("x", (d) =>
+            d.data.type === "equipment"
+                ? -EQUIPMENT_NODE_WIDTH / 2
+                : -ITEM_NODE_WIDTH / 2
+        )
+        .attr("y", (d) =>
+            d.data.type === "equipment"
+                ? -EQUIPMENT_NODE_HEIGHT / 2
+                : -ITEM_NODE_HEIGHT / 2
+        )
+        .attr("rx", NODE_RADIUS)
+        .attr("ry", NODE_RADIUS)
+        .attr("fill", (d) =>
+            d.data.type === "equipment" ? "rgb(51,51,51)" : "rgb(245,245,245)"
+        )
+        .attr("stroke", "none")
+        .attr("filter", "url(#dropShadow)");
 
-  // ノード内にテキスト（2行表示）を描画
-  node
-    .append("text")
-    .attr("text-anchor", "middle")
-    .style("font-size", (d) => (d.data.type === "equipment" ? "14px" : "12px"))
-    .selectAll("tspan")
-    .data((d) => {
-      if (d.data.type === "equipment") {
-        return [d.data.id, d.data.required];
-      } else {
-        return [d.data.id, d.data.required.toFixed(2) + "/min"];
-      }
-    })
-    .enter()
-    .append("tspan")
-    .attr("x", 0)
-    .attr("dy", (d, i) => (i === 0 ? "-0.2em" : "1.2em"))
-    .style("fill", (text, i, nodes) => {
-      const nodeDatum = d3.select(nodes[i].parentNode).datum();
-      return nodeDatum.data.type === "equipment"
-        ? "rgb(255,255,255)"
-        : "rgb(0,0,0)";
-    })
-    .text((d) => d);
+    // ノード内にテキスト（2行表示）を描画
+    node.append("text")
+        .attr("text-anchor", "middle")
+        .style("font-size", (d) =>
+            d.data.type === "equipment" ? "14px" : "12px"
+        )
+        .selectAll("tspan")
+        .data((d) => {
+            if (d.data.type === "equipment") {
+                return [d.data.id, d.data.required];
+            } else {
+                return [d.data.id, d.data.required.toFixed(2) + "/min"];
+            }
+        })
+        .enter()
+        .append("tspan")
+        .attr("x", 0)
+        .attr("dy", (d, i) => (i === 0 ? "-0.2em" : "1.2em"))
+        .style("fill", (text, i, nodes) => {
+            const nodeDatum = d3.select(nodes[i].parentNode).datum();
+            return nodeDatum.data.type === "equipment"
+                ? "rgb(255,255,255)"
+                : "rgb(0,0,0)";
+        })
+        .text((d) => d);
 }
 
 /**
@@ -256,28 +262,28 @@ function drawNodes(g, root) {
  * @returns 初期のズーム変換情報
  */
 function applyInitialTransform(zoom, svg, root, width, height) {
-  const { treeWidth, treeHeight, xExtent, yExtent } = getTreeSize(root);
+    const { treeWidth, treeHeight, xExtent, yExtent } = getTreeSize(root);
 
-  // 表示領域に収めるためのスケールを計算
-  const scaleX = (width - 2 * TREE_PADDING) / treeWidth;
-  const scaleY = height / treeHeight;
-  let desiredScale = Math.min(scaleX, scaleY);
-  console.log(`scaleX:${scaleX} scaleY:${scaleY}`);
+    // 表示領域に収めるためのスケールを計算
+    const scaleX = (width - 2 * TREE_PADDING) / treeWidth;
+    const scaleY = height / treeHeight;
+    let desiredScale = Math.min(scaleX, scaleY);
+    console.log(`scaleX:${scaleX} scaleY:${scaleY}`);
 
-  desiredScale = Math.min(desiredScale, ZOOM_SCALE_MAX);
+    desiredScale = Math.min(desiredScale, ZOOM_SCALE_MAX);
 
-  // ツリー全体の中心を求める
-  const centerX = -((yExtent[0] + yExtent[1]) / 2); //左右反転
-  const centerY = (xExtent[0] + xExtent[1]) / 2;
+    // ツリー全体の中心を求める
+    const centerX = -((yExtent[0] + yExtent[1]) / 2); //左右反転
+    const centerY = (xExtent[0] + xExtent[1]) / 2;
 
-  // 初期変換：ツリー中心をコンテナの中央に持ってくる
-  const initialTransform = d3.zoomIdentity
-    .translate(width / 2, height / 2)
-    .scale(desiredScale)
-    .translate(-centerX, -centerY);
+    // 初期変換：ツリー中心をコンテナの中央に持ってくる
+    const initialTransform = d3.zoomIdentity
+        .translate(width / 2, height / 2)
+        .scale(desiredScale)
+        .translate(-centerX, -centerY);
 
-  svg.call(zoom.transform, initialTransform);
-  return initialTransform;
+    svg.call(zoom.transform, initialTransform);
+    return initialTransform;
 }
 
 /**
@@ -289,9 +295,9 @@ function applyInitialTransform(zoom, svg, root, width, height) {
  * @param {Object} initialTransform - 初期ズーム変換
  */
 function addResetButton(zoom, svg, initialTransform) {
-  d3.select("#resetZoom").on("click", function () {
-    svg.transition().duration(750).call(zoom.transform, initialTransform);
-  });
+    d3.select("#resetZoom").on("click", function () {
+        svg.transition().duration(750).call(zoom.transform, initialTransform);
+    });
 }
 
 /* ===============================
@@ -305,37 +311,37 @@ function addResetButton(zoom, svg, initialTransform) {
  * @param {HTMLElement|string} container - コンテナの要素またはセレクタ
  */
 function renderTree(treeData, container) {
-  // コンテナ内に SVG とグループ要素を作成
-  const { svg, g, width, height } = createSVG(container);
+    // コンテナ内に SVG とグループ要素を作成
+    const { svg, g, width, height } = createSVG(container);
 
-  // ズーム機能を設定
-  const zoom = setupZoom(svg, g, width, height);
+    // ズーム機能を設定
+    const zoom = setupZoom(svg, g, width, height);
 
-  //ドロップシャドウのフィルターを追加
-  addDropShadow(svg);
+    //ドロップシャドウのフィルターを追加
+    addDropShadow(svg);
 
-  // 階層構造を作成し、ツリーのレイアウトを計算
-  const root = d3.hierarchy(treeData);
-  const treeLayout = d3
-    .tree()
-    .nodeSize([NODE_VERTICAL_SPACING, NODE_HORIZONTAL_SPACING]);
-  treeLayout(root);
+    // 階層構造を作成し、ツリーのレイアウトを計算
+    const root = d3.hierarchy(treeData);
+    const treeLayout = d3
+        .tree()
+        .nodeSize([NODE_VERTICAL_SPACING, NODE_HORIZONTAL_SPACING]);
+    treeLayout(root);
 
-  // ツリーのリンク（枝）を描画
-  drawLinks(g, root);
+    // ツリーのリンク（枝）を描画
+    drawLinks(g, root);
 
-  // ツリーのノード（矩形とテキスト）を描画
-  drawNodes(g, root);
+    // ツリーのノード（矩形とテキスト）を描画
+    drawNodes(g, root);
 
-  // ツリー全体が表示領域に収まるよう初期ズームを適用
-  const initialTransform = applyInitialTransform(
-    zoom,
-    svg,
-    root,
-    width,
-    height
-  );
+    // ツリー全体が表示領域に収まるよう初期ズームを適用
+    const initialTransform = applyInitialTransform(
+        zoom,
+        svg,
+        root,
+        width,
+        height
+    );
 
-  // リセットボタンがあれば、初期状態に戻すイベントを設定
-  addResetButton(zoom, svg, initialTransform);
+    // リセットボタンがあれば、初期状態に戻すイベントを設定
+    addResetButton(zoom, svg, initialTransform);
 }
