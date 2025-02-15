@@ -1,30 +1,83 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%; /* ビューポート全体 */
+:root {
+  --header-height: 50px;
+  --footer-height: 30px;
+  --input-area-height: 60px;
 }
 
-#app {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.inputArea {
-  flex: 0 0 60px;  /* 固定高さ */
+* {
   box-sizing: border-box;
 }
 
+header h1 {
+  width: 100%;
+  height: var(--header-height);
+  padding: 10px;
+  font-size: 20px;
+  margin: 0px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#app {
+  flex-direction: column;
+  height: calc(100vh - var(--header-height) - var(--footer-height));
+  width: 100%;
+  /*background-color: skyblue;/* デバッグ用 */
+  position: relative;
+}
+
+#resetZoom {
+  font-size: 16px;
+  position: absolute;
+  right: 0;
+  margin: 10px;
+}
+
+.inputArea {
+  height: var(--input-area-height);
+  width: 100%;
+  /*background-color: pink; /* デバッグ用 */
+}
+
 #productionFlow {
-  flex: 1;        /* 残り領域を全部使う */
-  min-height: 0;  /* Flexbox で高さを受け取れるように */
-  position: relative; 
-  overflow: hidden;
-  border: 3px solid red; /* デバッグ用 */
+  flex: column;
+  height: calc(100% - var(--input-area-height));
+  border: 1px black solid;
+  /*background-color: red; /* デバッグ用 */
 }
 
 #svgContainer {
   width: 100%;
   height: 100%;
-  /* border: 3px dashed blue; /* デバッグ用 */
+  /*background-color: blue; /* デバッグ用 */
+}
+
+#svgContainer svg {
+  width: 100%;
+  height: 100%;
+  /*background-color: whitesmoke; /* デバッグ用 */
+}
+
+#totalEquipment {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px;
+  margin: 10px;
+  font-size: 12px;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+footer p {
+  margin: 0;
+  padding: 0;
+  height: var(--footer-height);
 }

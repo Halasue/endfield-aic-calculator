@@ -38,11 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
       recalcProductionFlow();
     })
     .catch((error) => console.error("Error loading data:", error));
-
-  // ウィンドウサイズが変更されたときに再描画
-  window.addEventListener("resize", recalcProductionFlow);
 });
-
 // アイテムドロップダウン作成
 function createItemDropdown() {
   const select = document.getElementById("itemSelect");

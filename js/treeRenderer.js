@@ -26,7 +26,7 @@ const TREE_PADDING = 10;
 
 // 必要に応じてズームの制限を設定
 const ZOOM_SCALE_MIN = 0.2;
-const ZOOM_SCALE_MAX = 8;
+const ZOOM_SCALE_MAX = 5;
 
 /* ===============================
    ユーティリティ関数
@@ -79,8 +79,8 @@ function createSVG(container) {
   const svg = d3
     .select(container)
     .append("svg")
-    .attr("width", width)
-    .attr("height", height);
+    .attr("viewBox", `0 0 ${width} ${height}`)
+    .attr("preserveAspectRatio", "xMidYMid slice");
 
   const g = svg.append("g");
 
@@ -261,7 +261,10 @@ function applyInitialTransform(zoom, svg, root, width, height) {
   // 表示領域に収めるためのスケールを計算
   const scaleX = (width - 2 * TREE_PADDING) / treeWidth;
   const scaleY = height / treeHeight;
-  const desiredScale = Math.min(scaleX, scaleY);
+  let desiredScale = Math.min(scaleX, scaleY);
+  console.log(`scaleX:${scaleX} scaleY:${scaleY}`);
+
+  desiredScale = Math.min(desiredScale, ZOOM_SCALE_MAX);
 
   // ツリー全体の中心を求める
   const centerX = -((yExtent[0] + yExtent[1]) / 2); //左右反転
