@@ -310,7 +310,7 @@ function addResetButton(zoom, svg, initialTransform) {
  * @param {Object} treeData - ツリーの階層データ
  * @param {HTMLElement|string} container - コンテナの要素またはセレクタ
  */
-function renderTree(treeData, container) {
+export function renderTree(treeData, container) {
     // コンテナ内に SVG とグループ要素を作成
     const { svg, g, width, height } = createSVG(container);
 

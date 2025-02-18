@@ -1,3 +1,9 @@
+import {
+    itemsData,
+    recipesData,
+    facilitiesData,
+    materialsData,
+} from "./app.js";
 /**
  * treeDataBuilder.js
  *
@@ -104,7 +110,7 @@ function processRecipe(recipe, requiredPerMinute, visited) {
  * @param {Set} visited - 再帰ループ防止用の Set
  * @returns {Object} 構築されたツリー構造のノード
  */
-function buildTreeForItem(itemId, requiredPerMinute, visited) {
+export function buildTreeForItem(itemId, requiredPerMinute, visited) {
     // アイテム情報を取得
     const item = getItem(itemId);
 

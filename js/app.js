@@ -1,10 +1,13 @@
+import { buildTreeForItem } from "./treeDataBuilder.js";
+import { renderTree } from "./treeRenderer.js";
+
 /**
  * app.js
  * ------
  * メインの初期化処理およびイベント設定
  */
 
-let recipesData = [],
+export let recipesData = [],
     materialsData = [],
     itemsData = [],
     facilitiesData = [],
