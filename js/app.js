@@ -1,140 +1,109 @@
-import { buildTreeForItem } from "./treeDataBuilder.js";
+/**
+ * @file app.js
+ * @description メイン初期化およびイベント設定処理
+ */
+import { loadData, getSpriteData } from "./dataManager.js";
 import { renderTree } from "./treeRenderer.js";
 import { preloadImages } from "./imageCache.js";
+import { Item } from "./item.js";
+import { calculateProductionTree, calculateTotalEquipment } from "./calc.js";
 
 /**
- * app.js
- * ------
- * メインの初期化処理およびイベント設定
+ * アイテムドロップダウン生成処理
  */
-
-export let recipesData = [],
-    materialsData = [],
-    itemsData = [],
-    facilitiesData = [],
-    spriteData = {};
-
-document.addEventListener("DOMContentLoaded", () => {
-    // data.json と sprites.json を読み込む
-    Promise.all([
-        fetch("../data/data.json").then((response) => response.json()),
-        fetch("../data/sprites.json").then((response) => response.json()),
-    ])
-        .then(([data, sprites]) => {
-            recipesData = data.recipes;
-            materialsData = data.materials;
-            itemsData = data.items;
-            facilitiesData = data.facilities;
-            spriteData = sprites;
-
-            // スプライトシートを事前ロード
-            preloadImages(spriteData).then(() => {
-                recalcProductionFlow();
-            });
-
-            createItemDropdown();
-
-            document
-                .getElementById("itemSelect")
-                .addEventListener("change", recalcProductionFlow);
-            document
-                .getElementById("quantityInput")
-                .addEventListener("input", recalcProductionFlow);
-            document
-                .getElementById("timeInput")
-                .addEventListener("input", recalcProductionFlow);
-
-            recalcProductionFlow();
-        })
-        .catch((error) => console.error("Error loading data:", error));
-});
-// アイテムドロップダウン作成
 function createItemDropdown() {
-    const select = document.getElementById("itemSelect");
-    select.innerHTML = "";
-
+    const selectElement = document.getElementById("itemSelect");
+    if (!selectElement) {
+        console.error("Item select element not found");
+        return;
+    }
+    selectElement.innerHTML = "";
     const defaultOption = document.createElement("option");
-    defaultOption.textContent = "アイテムを選択してください";
+    defaultOption.textContent = "Please select an item";
     defaultOption.value = "";
-    select.appendChild(defaultOption);
+    selectElement.appendChild(defaultOption);
 
-    itemsData.forEach((item) => {
+    // 全アイテムのインスタンス一覧取得
+    const items = Item.getAllItems();
+    items.forEach((item) => {
         const option = document.createElement("option");
         option.value = item.item_id;
         option.textContent = `${item.name_jp} (${item.name_en})`;
-        select.appendChild(option);
+        selectElement.appendChild(option);
     });
 }
 
-// 総設備数の計算：再帰的に equipment ノードの required 値を合計
-function computeTotalEquipment(node) {
-    let total = 0;
-    if (node.type === "equipment") total += node.required;
-    if (node.children) {
-        node.children.forEach((child) => {
-            total += computeTotalEquipment(child);
-        });
-    }
-    return total;
-}
-
-// 入力変更に応じた再計算
+/**
+ * 入力変更時の生産フロー再計算イベント処理
+ * ※DOM要素存在確認および入力値数値検証含む
+ */
 function recalcProductionFlow() {
-    const selectedItemId = document.getElementById("itemSelect").value;
+    const itemSelect = document.getElementById("itemSelect");
+    if (!itemSelect) {
+        console.error("Item select element not found");
+        return;
+    }
+    const selectedItemId = itemSelect.value;
     if (!selectedItemId) return;
 
-    const targetProduction = parseFloat(
-        document.getElementById("quantityInput").value
-    );
-    const timePeriod = parseFloat(document.getElementById("timeInput").value);
-    if (
-        isNaN(targetProduction) ||
-        isNaN(timePeriod) ||
-        targetProduction <= 0 ||
-        timePeriod <= 0
-    )
+    const quantityInput = document.getElementById("quantityInput");
+    const timeInput = document.getElementById("timeInput");
+    if (!quantityInput || !timeInput) {
+        console.error("Input elements not found");
         return;
+    }
+    const targetProduction = parseFloat(quantityInput.value);
+    const timePeriod = parseFloat(timeInput.value);
+    if (targetProduction <= 0 || timePeriod <= 0) return;
 
-    // 1分あたり必要な個数
-    const requiredPerMinute = targetProduction / timePeriod;
-    const treeData = buildTreeForItem(
+    const treeData = calculateProductionTree(
         selectedItemId,
-        requiredPerMinute,
-        new Set()
+        targetProduction,
+        timePeriod
     );
 
-    // #svgContainer 内だけをクリアしてツリー描画
     const svgContainer = document.getElementById("svgContainer");
+    if (!svgContainer) {
+        console.error("SVG container not found");
+        return;
+    }
     svgContainer.innerHTML = "";
     renderTree(treeData, svgContainer);
 
-    // 総設備数の計算
-    const totalEquipment = computeTotalEquipment(treeData);
+    const totalEquipment = calculateTotalEquipment(treeData);
     const totalDiv = document.getElementById("totalEquipment");
     if (totalDiv) {
-        totalDiv.textContent = "総設備数: " + totalEquipment;
+        totalDiv.textContent = "Total equipment: " + totalEquipment;
     }
 }
 
-// デバッグ用
-function debugLog(message) {
-    const debugDiv = document.getElementById("debug");
-    const p = document.createElement("p");
-    p.textContent = message;
-    debugDiv.appendChild(p);
+/**
+ * DOMContentLoaded 時初期化処理
+ * ※データ読み込み、画像プリロード、イベント設定の順次実行
+ */
+document.addEventListener("DOMContentLoaded", () => {
+    loadData()
+        .then(() => {
+            const spriteData = getSpriteData();
+            preloadImages(spriteData)
+                .then(() => {
+                    recalcProductionFlow();
+                })
+                .catch((err) => console.error("Image preload failed", err));
+            createItemDropdown();
 
-    // 10行以上になったら古いログを削除
-    if (debugDiv.childNodes.length > 10) {
-        debugDiv.removeChild(debugDiv.firstChild);
-    }
-}
+            const itemSelect = document.getElementById("itemSelect");
+            const quantityInput = document.getElementById("quantityInput");
+            const timeInput = document.getElementById("timeInput");
 
-function debugUpdate(message) {
-    const debugDiv = document.getElementById("debug");
-    debugDiv.textContent = message;
-}
+            if (itemSelect)
+                itemSelect.addEventListener("change", recalcProductionFlow);
+            if (quantityInput)
+                quantityInput.addEventListener("input", recalcProductionFlow);
+            if (timeInput)
+                timeInput.addEventListener("input", recalcProductionFlow);
 
-function debugClear() {
-    const debugDiv = document.getElementById("debug");
-    debugDiv.textContent = "";
-}
+            recalcProductionFlow();
+        })
+        .catch((error) => console.error("Data load failed", error));
+});

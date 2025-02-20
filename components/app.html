@@ -3,31 +3,15 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Endfield AIC Calculator - D3.js Tree View</title>
+        <title>Endfield AIC Calculator</title>
         <link rel="stylesheet" href="app.css" />
     </head>
     <body>
         <header>
-            <h1>Endfield AIC Calculator - D3.js Tree View</h1>
+            <h1>Endfield AIC Calculator</h1>
         </header>
 
         <main id="app">
-            <!-- デバッグ用 -->
-            <div
-                id="debug"
-                style="
-                    position: fixed;
-                    bottom: 10px;
-                    left: 10px;
-                    background: rgba(0, 0, 0, 0.7);
-                    color: white;
-                    padding: 10px;
-                    font-size: 12px;
-                    border-radius: 5px;
-                    z-index: 1000;
-                "
-            ></div>
-
             <div class="inputArea">
                 <!-- アイテム選択 -->
                 <label for="itemSelect">アイテム選択:</label>
@@ -55,8 +39,8 @@
 
         <script src="../libs/d3.js"></script>
 
-        <script type="module" src="../js/treeDataBuilder.js"></script>
-        <script type="module" src="../js/treeRenderer.js"></script>
-        <script type="module" src="../js/app.js"></script>
+        <script type="module" src="../js/treeDataBuilder.js" defer></script>
+        <script type="module" src="../js/treeRenderer.js" defer></script>
+        <script type="module" src="../js/app.js" defer></script>
     </body>
 </html>
