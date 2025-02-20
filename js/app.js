@@ -1,5 +1,6 @@
 import { buildTreeForItem } from "./treeDataBuilder.js";
 import { renderTree } from "./treeRenderer.js";
+import { preloadImages } from "./imageCache.js";
 
 /**
  * app.js
@@ -25,6 +26,11 @@ document.addEventListener("DOMContentLoaded", () => {
             itemsData = data.items;
             facilitiesData = data.facilities;
             spriteData = sprites;
+
+            // スプライトシートを事前ロード
+            preloadImages(spriteData).then(() => {
+                recalcProductionFlow();
+            });
 
             createItemDropdown();
 

@@ -1,3 +1,7 @@
+import { spriteData } from "./app.js";
+import { getCachedImage } from "./imageCache.js";
+import { getItem, getFacility } from "./treeDataBuilder.js";
+
 /**
  * treeRenderer.js
  *
@@ -10,15 +14,15 @@
 
 // ノードのサイズ設定（ノードの種類によってサイズが異なる）
 const ITEM_NODE_WIDTH = 150;
-const ITEM_NODE_HEIGHT = 50;
+const ITEM_NODE_HEIGHT = 100;
 const EQUIPMENT_NODE_WIDTH = 200;
-const EQUIPMENT_NODE_HEIGHT = 70;
+const EQUIPMENT_NODE_HEIGHT = 120;
 
 // ノードの角丸半径
 const NODE_RADIUS = 10;
 
 // ツリー内のノード間隔（d.x：上下, d.y：左右）
-const NODE_VERTICAL_SPACING = 60;
+const NODE_VERTICAL_SPACING = 120;
 const NODE_HORIZONTAL_SPACING = 200;
 
 // ツリー初期表示時の左右余白
@@ -27,6 +31,9 @@ const TREE_PADDING = 10;
 // 必要に応じてズームの制限を設定
 const ZOOM_SCALE_MIN = 0.2;
 const ZOOM_SCALE_MAX = 5;
+
+const ITEM_IMAGE_SCALE_FACTOR = 0.3;
+const EQUIPMENT_IMAGE_SCALE_FACTOR = 0.5;
 
 /* ===============================
    ユーティリティ関数
@@ -188,6 +195,8 @@ function drawLinks(g, root) {
  * @param {Object} root - ツリーのルート（d3.hierarchy オブジェクト）
  */
 function drawNodes(g, root) {
+    const isEquipment = (d) => d.data.type === "equipment";
+
     const node = g
         .selectAll(".node")
         .data(root.descendants())
@@ -199,45 +208,120 @@ function drawNodes(g, root) {
     // ノードの矩形を描画
     node.append("rect")
         .attr("width", (d) =>
-            d.data.type === "equipment" ? EQUIPMENT_NODE_WIDTH : ITEM_NODE_WIDTH
+            isEquipment(d) ? EQUIPMENT_NODE_WIDTH : ITEM_NODE_WIDTH
         )
         .attr("height", (d) =>
-            d.data.type === "equipment"
-                ? EQUIPMENT_NODE_HEIGHT
-                : ITEM_NODE_HEIGHT
+            isEquipment(d) ? EQUIPMENT_NODE_HEIGHT : ITEM_NODE_HEIGHT
         )
         .attr("x", (d) =>
-            d.data.type === "equipment"
-                ? -EQUIPMENT_NODE_WIDTH / 2
-                : -ITEM_NODE_WIDTH / 2
+            isEquipment(d) ? -EQUIPMENT_NODE_WIDTH / 2 : -ITEM_NODE_WIDTH / 2
         )
         .attr("y", (d) =>
-            d.data.type === "equipment"
-                ? -EQUIPMENT_NODE_HEIGHT / 2
-                : -ITEM_NODE_HEIGHT / 2
+            isEquipment(d) ? -EQUIPMENT_NODE_HEIGHT / 2 : -ITEM_NODE_HEIGHT / 2
         )
         .attr("rx", NODE_RADIUS)
         .attr("ry", NODE_RADIUS)
         .attr("fill", (d) =>
-            d.data.type === "equipment" ? "rgb(51,51,51)" : "rgb(245,245,245)"
+            isEquipment(d) ? "rgb(51,51,51)" : "rgb(245,245,245)"
         )
         .attr("stroke", "none")
         .attr("filter", "url(#dropShadow)");
 
+    // 画像表示
+    const itemSpriteSheet = spriteData.categories.item.spriteSheet;
+    const equipmentSpriteSheet = spriteData.categories.equipment.spriteSheet;
+
+    const itemTileSize = spriteData.categories.item.tileSize;
+    const equipmentTileSize = spriteData.categories.equipment.tileSize;
+
+    const cachedItemImage = getCachedImage(itemSpriteSheet);
+    const cachedEquipmentImage = getCachedImage(equipmentSpriteSheet);
+
+    let itemImageWidth = cachedItemImage.naturalWidth;
+    let itemImageHeight = cachedItemImage.naturalHeight;
+
+    let equipmentImageWidth = cachedEquipmentImage.naturalWidth;
+    let equipmentImageHeight = cachedEquipmentImage.naturalHeight;
+
+    node.append("image")
+        .attr("xlink:href", (d) => {
+            return isEquipment(d) ? equipmentSpriteSheet : itemSpriteSheet;
+        })
+        .attr("x", (d) =>
+            isEquipment(d)
+                ? -(
+                      (getFacility(d.data.id).sprite_x * equipmentTileSize +
+                          equipmentTileSize / 2) *
+                      EQUIPMENT_IMAGE_SCALE_FACTOR
+                  )
+                : -(
+                      (getItem(d.data.id).sprite_x * itemTileSize +
+                          itemTileSize / 2) *
+                      ITEM_IMAGE_SCALE_FACTOR
+                  )
+        )
+        .attr("y", (d) =>
+            isEquipment(d)
+                ? -(
+                      (getFacility(d.data.id).sprite_y * equipmentTileSize +
+                          equipmentTileSize / 2) *
+                      EQUIPMENT_IMAGE_SCALE_FACTOR
+                  )
+                : -(
+                      (getItem(d.data.id).sprite_y * itemTileSize +
+                          itemTileSize / 2) *
+                      ITEM_IMAGE_SCALE_FACTOR
+                  )
+        )
+
+        .attr("width", (d) =>
+            isEquipment(d)
+                ? equipmentImageWidth * EQUIPMENT_IMAGE_SCALE_FACTOR
+                : itemImageWidth * ITEM_IMAGE_SCALE_FACTOR
+        )
+        .attr("height", (d) =>
+            isEquipment(d)
+                ? equipmentImageHeight * EQUIPMENT_IMAGE_SCALE_FACTOR
+                : itemImageHeight * ITEM_IMAGE_SCALE_FACTOR
+        )
+        .attr("clip-path", (d) => `url(#clip-${d.data.id})`);
+
+    // スプライトの切り抜き
+    node.append("clipPath")
+        .attr("id", (d) => `clip-${d.data.id}`)
+        .append("rect")
+        .attr("x", (d) =>
+            isEquipment(d)
+                ? (-equipmentTileSize * EQUIPMENT_IMAGE_SCALE_FACTOR) / 2
+                : (-itemTileSize * ITEM_IMAGE_SCALE_FACTOR) / 2
+        )
+        .attr("y", (d) =>
+            isEquipment(d)
+                ? (-equipmentTileSize * EQUIPMENT_IMAGE_SCALE_FACTOR) / 2
+                : (-itemTileSize * ITEM_IMAGE_SCALE_FACTOR) / 2
+        )
+        .attr("width", (d) =>
+            isEquipment(d)
+                ? equipmentTileSize * EQUIPMENT_IMAGE_SCALE_FACTOR
+                : itemTileSize * ITEM_IMAGE_SCALE_FACTOR
+        )
+        .attr("height", (d) =>
+            isEquipment(d)
+                ? equipmentTileSize * EQUIPMENT_IMAGE_SCALE_FACTOR
+                : itemTileSize * ITEM_IMAGE_SCALE_FACTOR
+        );
+
     // ノード内にテキスト（2行表示）を描画
     node.append("text")
         .attr("text-anchor", "middle")
-        .style("font-size", (d) =>
-            d.data.type === "equipment" ? "14px" : "12px"
-        )
+        .style("font-size", (d) => (isEquipment(d) ? "14px" : "12px"))
         .selectAll("tspan")
-        .data((d) => {
-            if (d.data.type === "equipment") {
-                return [d.data.id, d.data.required];
-            } else {
-                return [d.data.id, d.data.required.toFixed(2) + "/min"];
-            }
-        })
+        .data((d) => [
+            d.data.id,
+            isEquipment(d)
+                ? d.data.required
+                : d.data.required.toFixed(2) + "/min",
+        ])
         .enter()
         .append("tspan")
         .attr("x", 0)

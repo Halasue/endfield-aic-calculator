@@ -27,8 +27,16 @@ import {
  * アイテムIDからアイテム情報を取得する
  * （見つからなければ null を返す）
  */
-function getItem(itemId) {
+export function getItem(itemId) {
     return itemsData.find((x) => x.item_id === itemId) || null;
+}
+
+/**
+ * 設備IDからアイテム情報を取得する
+ * （見つからなければ null を返す）
+ */
+export function getFacility(facilityId) {
+    return facilitiesData.find((x) => x.facility_id === facilityId || null);
 }
 
 /**
@@ -63,9 +71,7 @@ function createEquipmentNode(facility, equipmentCount) {
  */
 function processRecipe(recipe, requiredPerMinute, visited) {
     // 対応する設備情報を取得
-    const facility = facilitiesData.find(
-        (f) => f.facility_id === recipe.facility_id
-    );
+    const facility = getFacility(recipe.facility_id);
     if (!facility) return null; // 設備情報が見つからなければ処理をスキップ
 
     // 1サイクルあたりの処理時間と出力数を取得
