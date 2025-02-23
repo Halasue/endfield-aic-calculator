@@ -12,6 +12,24 @@
 - 各アイテムの生産量計算
 - 各種生産設備数の分析
 
+## インストール方法
+
+まずリポジトリをクローンし、依存関係をインストールしてください。
+
+```sh
+git clone https://github.com/Halasue/endfield-aic-calculator.git
+cd endfield-aic-calculator
+npm install
+```
+
+## 実行方法
+
+以下のコマンドでアプリを起動できます。
+
+```sh
+npm start
+```
+
 ## ライセンス
 
 このプロジェクトのソースコードは [MIT License](./LICENSE) の下で公開されています。  
@@ -21,19 +39,38 @@
 
 # Endfield AIC Calculator
 
-This project is a **Production Calculator Tool** for the **Arknights: Endfield** Automated Industry Complex (AIC).
+This project is a **Production Calculation Tool** for the **Automated Industry Complex (AIC)** system in **Arknights: Endfield**.
 
 ## Overview
 
-Supports production optimization and efficient resource management based on item, recipe, and facility data used in the Automated Industry Complex (AIC).
+The tool helps optimize production efficiency and manage resources effectively by utilizing data from items, recipes, and facilities within the **Automated Industry Complex (AIC)**.
 
-## Features (Planned)
+## Planned Features
 
-- Visualization of production chains
-- Calculation of item production quantities
-- Analysis of production facility requirements
+- Production chain visualization  
+- Production quantity calculation  
+- Facility usage analysis  
+
+## Installation
+
+Clone the repository and install the dependencies:
+
+```sh
+git clone https://github.com/Halasue/endfield-aic-calculator.git
+cd endfield-aic-calculator
+npm install
+```
+
+## Run Instructions
+
+To start the application, run the following command:
+
+```sh
+npm start
+```
 
 ## License
 
 The source code of this project is licensed under the [MIT License](./LICENSE).  
-For information about the images and other assets used, please refer to the [ASSETS_LICENSE](./ASSETS_LICENSE) file.
+For information about images and other assets used, please refer to the [ASSETS_LICENSE](./ASSETS_LICENSE) file.
+
