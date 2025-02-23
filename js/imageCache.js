@@ -4,35 +4,49 @@
  */
 
 let imageCache = {};
+let pendingLoads = {};
 
 /**
- * 指定URLの画像を非同期に読み込みキャッシュする処理
+ * 指定URLの画像を読み込みキャッシュする。
+ * すでにキャッシュ済みの場合は即座に返す。
+ * 読み込み中の画像は `pendingLoads` に保存し、同じ画像を重複して読み込まないようにする。
+ *
  * @param {string} url - 画像URL
- * @returns {Promise<HTMLImageElement>} 読み込み済み画像
+ * @returns {Promise<HTMLImageElement>} 読み込み済みの画像
  */
 export function loadImage(url) {
-    return new Promise((resolve, reject) => {
-        if (imageCache[url]) {
-            resolve(imageCache[url]);
-            return;
-        }
+    if (imageCache[url]) {
+        return Promise.resolve(imageCache[url]);
+    }
+    if (pendingLoads[url]) {
+        return pendingLoads[url];
+    }
+
+    pendingLoads[url] = new Promise((resolve, reject) => {
         const img = new Image();
         img.src = url;
         img.onload = () => {
             imageCache[url] = img;
+            delete pendingLoads[url]; // 完了後に削除
             resolve(img);
         };
-        img.onerror = (err) => {
-            console.error("Failed to load image", url, err);
-            reject(err);
+        img.onerror = () => {
+            const errorMessage = `[imageCache] Image load failed: ${url}`;
+            console.error(errorMessage);
+            delete pendingLoads[url];
+            reject(new Error(errorMessage));
         };
     });
+
+    return pendingLoads[url];
 }
 
 /**
- * スプライトデータに基づき、複数画像を事前にロードする処理
+ * スプライトデータに基づき、複数の画像を事前にロードする。
+ * `loadImage` を使用してキャッシュに登録する。
+ *
  * @param {Object} spriteData - スプライトデータ
- * @returns {Promise<void>} ロード完了までのPromise
+ * @returns {Promise<void>} ロード完了までの `Promise`
  */
 export async function preloadImages(spriteData) {
     const categoryKeys = Object.keys(spriteData.categories);
@@ -44,10 +58,29 @@ export async function preloadImages(spriteData) {
 }
 
 /**
- * キャッシュ済み画像の取得処理
+ * キャッシュ済みの画像を取得する。
  * @param {string} url - 画像URL
- * @returns {HTMLImageElement|null} キャッシュ画像または null
+ * @returns {HTMLImageElement|null} キャッシュ画像または `null`
  */
 export function getCachedImage(url) {
     return imageCache[url] || null;
+}
+
+/**
+ * キャッシュ内の特定の画像を削除する。
+ * @param {string} url - 画像URL
+ */
+export function removeCachedImage(url) {
+    if (imageCache[url]) {
+        delete imageCache[url];
+        console.log("Removed cached image for", url);
+    }
+}
+
+/**
+ * すべてのキャッシュをクリアする。
+ */
+export function clearCache() {
+    imageCache = {};
+    console.log("Cleared image cache");
 }

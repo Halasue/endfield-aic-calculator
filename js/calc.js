@@ -3,12 +3,14 @@
  * @description 生産ツリー構築および総設備数計算処理
  */
 
-import { buildTreeForItem } from "./treeDataBuilder.js";
+import { buildProductionTree } from "./treeDataBuilder.js";
+import { NODE_TYPE } from "./constants.js";
 
 /**
  * 生産ツリー構築処理
- * 指定アイテムIDと目標生産数、期間から1分あたり必要個数を計算し、
- * buildTreeForItem を用いて生産ツリーデータを生成
+ * 指定アイテムIDと目標生産数、期間から1分あたりの必要個数を計算し、
+ * `buildProductionTree` を用いて生産ツリーデータを生成する。
+ *
  * @param {string} itemId - アイテムID
  * @param {number} targetProduction - 目標生産数
  * @param {number} timePeriod - 期間（分）
@@ -16,24 +18,24 @@ import { buildTreeForItem } from "./treeDataBuilder.js";
  */
 export function calculateProductionTree(itemId, targetProduction, timePeriod) {
     const requiredPerMinute = targetProduction / timePeriod; // 1分あたり必要個数算出
-    return buildTreeForItem(itemId, requiredPerMinute, new Set());
+    return buildProductionTree(itemId, requiredPerMinute, new Set());
 }
 
 /**
- * 総設備数再帰計算処理
+ * 総設備数の再帰計算処理
  * 生産ツリーデータの各ノードについて、
- * type が "equipment" の場合に required を加算し、
- * 子ノードも再帰的に計算して総設備数を求める
+ * `type` が `NODE_TYPE.EQUIPMENT` の場合に `required` を加算し、
+ * 子ノードも再帰的に計算して総設備数を求める。
+ *
  * @param {Object} node - 生産ツリーノード
- * @returns {number} 総設備数
+ * @returns {number} 総設備数（自身の設備数 + 子ノードの設備数の合計）
  */
 export function calculateTotalEquipment(node) {
-    let total = 0;
-    if (node.type === "equipment") total += node.required;
-    if (node.children) {
-        node.children.forEach((child) => {
-            total += calculateTotalEquipment(child);
-        });
-    }
-    return total;
+    return (
+        (node.type === NODE_TYPE.EQUIPMENT ? node.required : 0) +
+        (node.children?.reduce(
+            (sum, child) => sum + calculateTotalEquipment(child),
+            0
+        ) ?? 0)
+    );
 }

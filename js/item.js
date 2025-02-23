@@ -4,10 +4,14 @@
  */
 import { getItems } from "./dataManager.js";
 
+let itemCache = new Map();
+
+/**
+ * アイテムを表現するクラス
+ */
 export class Item {
     /**
      * コンストラクタ
-     * アイテムデータからインスタンス生成
      * @param {Object} data - アイテムデータ
      */
     constructor(data) {
@@ -20,26 +24,33 @@ export class Item {
     }
 
     /**
-     * 指定アイテムIDに該当するアイテムインスタンス取得処理
+     * 指定アイテムIDに該当するアイテムインスタンスを取得する。
+     * もし `itemCache` に存在しない場合はデータを取得する。
+     *
      * @param {string} itemId - アイテムID
-     * @returns {Item|null} アイテムインスタンスまたは null
+     * @returns {Item|null} アイテムインスタンスまたは `null`
      */
     static getItemById(itemId) {
-        const items = getItems();
-        const found = items.find((item) => item.item_id === itemId);
-        if (found) {
-            return new Item(found);
+        if (!itemCache.size) {
+            itemCache = new Map(
+                getItems().map((item) => [item.item_id, new Item(item)])
+            );
         }
-        console.error("Item not found", itemId);
-        return null;
+        return itemCache.get(itemId) ?? null;
     }
 
     /**
-     * 全アイテムインスタンス取得処理
-     * @returns {Array<Item>} アイテムインスタンス一覧
+     * 全アイテムのインスタンス一覧を取得する。
+     * もし `itemCache` にデータが存在しない場合は、データを取得する。
+     *
+     * @returns {Array<Item>} アイテムインスタンスの配列
      */
     static getAllItems() {
-        const items = getItems();
-        return items.map((data) => new Item(data));
+        if (!itemCache.size) {
+            itemCache = new Map(
+                getItems().map((item) => [item.item_id, new Item(item)])
+            );
+        }
+        return Array.from(itemCache.values());
     }
 }

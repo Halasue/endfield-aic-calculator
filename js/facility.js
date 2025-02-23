@@ -2,13 +2,16 @@
  * @file facility.js
  * @description 設備を表現するクラス
  */
-
 import { getFacilities } from "./dataManager.js";
 
+let facilityCache = new Map();
+
+/**
+ * 設備を表現するクラス
+ */
 export class Facility {
     /**
      * コンストラクタ
-     * 設備データオブジェクトからインスタンス生成
      * @param {Object} data - 設備データ
      */
     constructor(data) {
@@ -19,28 +22,39 @@ export class Facility {
     }
 
     /**
-     * 指定設備IDに該当する設備インスタンス取得処理
+     * 指定設備IDに該当する設備インスタンスを取得する。
+     * もし `facilityCache` に存在しない場合はデータを取得する。
+     *
      * @param {string} facilityId - 設備ID
-     * @returns {Facility|null} 設備インスタンスまたは null
+     * @returns {Facility|null} 設備インスタンスまたは `null`
      */
     static getFacilityById(facilityId) {
-        const facilities = getFacilities();
-        const found = facilities.find(
-            (facility) => facility.facility_id === facilityId
-        );
-        if (found) {
-            return new Facility(found);
+        if (!facilityCache.size) {
+            facilityCache = new Map(
+                getFacilities().map((facility) => [
+                    facility.facility_id,
+                    new Facility(facility),
+                ])
+            );
         }
-        console.error("Facility not found", facilityId);
-        return null;
+        return facilityCache.get(facilityId) ?? null;
     }
 
     /**
-     * 全設備インスタンス取得処理
-     * @returns {Array<Facility>} 設備インスタンス一覧
+     * 全設備のインスタンス一覧を取得する。
+     * もし `facilityCache` にデータが存在しない場合は、データを取得する。
+     *
+     * @returns {Array<Facility>} 設備インスタンスの配列
      */
     static getAllFacilities() {
-        const facilities = getFacilities();
-        return facilities.map((data) => new Item(data));
+        if (!facilityCache.size) {
+            facilityCache = new Map(
+                getFacilities().map((facility) => [
+                    facility.facility_id,
+                    new Facility(facility),
+                ])
+            );
+        }
+        return Array.from(facilityCache.values());
     }
 }
