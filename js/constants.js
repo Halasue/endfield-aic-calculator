@@ -15,19 +15,31 @@ export const TREE_DIRECTION = {
 
 export const NODE_CONFIG = {
     [NODE_TYPE.ITEM]: {
-        WIDTH: 150,
-        HEIGHT: 100,
+        WIDTH: 100,
+        HEIGHT: 35,
+        RADIUS: 5,
         COLOR: "rgb(245,245,245)",
-        RADIUS: 10,
-        TEXTCOLOR: "rgb(0,0,0)",
-        FONTSIZE: "12px",
+        TEXT: {
+            COLOR: "rgb(0,0,0)",
+            FONTSIZE: "10px",
+        },
+        IMAGE_CONFIG: {
+            SCALEFACTOR: 0.6,
+            Y_OFFSET: -45,
+        },
     },
     [NODE_TYPE.EQUIPMENT]: {
-        WIDTH: 200,
-        HEIGHT: 120,
+        WIDTH: 150,
+        HEIGHT: 55,
         RADIUS: 10,
         COLOR: "rgb(51,51,51)",
-        TEXTCOLOR: "rgb(255,255,255)",
-        FONTSIZE: "14px",
+        TEXT: {
+            COLOR: "rgb(255,255,255)",
+            FONTSIZE: "14px",
+        },
+        IMAGE_CONFIG: {
+            SCALEFACTOR: 1,
+            Y_OFFSET: -75,
+        },
     },
 };

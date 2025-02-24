@@ -7,7 +7,8 @@ import { NODE_CONFIG } from "./constants.js";
 
 // --- ズーム設定関連 ---
 const ZOOM_CONFIG = { MIN: 0.2, MAX: 5 };
-const TREE_MARGIN = 30;
+const TREE_MARGIN_VERTICAL = 80;
+const TREE_MARGIN_HORIZONTAL = 50;
 
 
 /**
@@ -145,8 +146,8 @@ export function applyInitialTransform(zoom, svg, root, width, height) {
 
     const { treeWidth, treeHeight, xExtent, yExtent } = getTreeSize(root);
     const scale = Math.min(
-        (width - TREE_MARGIN) / treeWidth,
-        (height - TREE_MARGIN) / treeHeight,
+        (width - TREE_MARGIN_HORIZONTAL) / treeWidth,
+        (height - TREE_MARGIN_VERTICAL) / treeHeight,
         ZOOM_CONFIG.MAX
     );
 
@@ -158,7 +159,9 @@ export function applyInitialTransform(zoom, svg, root, width, height) {
         .scale(scale)
         .translate(-(xMin + xMax) / 2, -(yMin + yMax) / 2);
 
-    svg.call(zoom.transform, initialTransform);
+    const translateY = 50;
+    svg.call(zoom.transform, initialTransform.translate(0, translateY)); // Y軸方向に20ピクセルオフセット
+
     return initialTransform;
 }
 

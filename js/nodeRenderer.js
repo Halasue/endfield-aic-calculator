@@ -9,12 +9,6 @@ import { Item } from "./item.js";
 import { Facility } from "./facility.js";
 import { NODE_TYPE, NODE_CONFIG } from "./constants.js";
 
-// --- 画像スケール ---
-const IMAGE_CONFIG = {
-    [NODE_TYPE.ITEM]: { SCALEFACTOR: 0.6 },
-    [NODE_TYPE.EQUIPMENT]: { SCALEFACTOR: 1 },
-};
-
 /**
  * ノード背景（矩形）を描画する。
  * @param {d3.Selection} nodeSelection - ノード群の d3 Selection
@@ -44,7 +38,7 @@ export function drawNodeImage(nodeSelection) {
         const category = spriteData.categories[d.data.type];
         const cachedImage = getCachedImage(category.spriteSheet);
         const tileSize = category.tileSize;
-        const scaleFactor = IMAGE_CONFIG[d.data.type].SCALEFACTOR;
+        const scaleFactor = NODE_CONFIG[d.data.type].IMAGE_CONFIG.SCALEFACTOR;
 
         const { sprite_col, sprite_row } =
             d.data.type === NODE_TYPE.EQUIPMENT
@@ -54,7 +48,7 @@ export function drawNodeImage(nodeSelection) {
         d3.select(this)
             .attr("xlink:href", category.spriteSheet)
             .attr("x", -((sprite_col * tileSize + tileSize / 2) * scaleFactor))
-            .attr("y", -((sprite_row * tileSize + tileSize / 2) * scaleFactor))
+            .attr("y", -((sprite_row * tileSize + tileSize / 2) * scaleFactor) + NODE_CONFIG[d.data.type].IMAGE_CONFIG.Y_OFFSET)
             .attr("width", cachedImage.naturalWidth * scaleFactor)
             .attr("height", cachedImage.naturalHeight * scaleFactor)
             .attr("clip-path", `url(#clip-${d.data.id})`);
@@ -75,14 +69,36 @@ export function addClipPath(nodeSelection) {
         .each(function (d) {
             const category = spriteData.categories[d.data.type];
             const tileSize = category.tileSize;
-            const scaleFactor = IMAGE_CONFIG[d.data.type].SCALEFACTOR;
+            const scaleFactor = NODE_CONFIG[d.data.type].IMAGE_CONFIG.SCALEFACTOR;
 
             d3.select(this)
                 .attr("x", -(tileSize * scaleFactor) / 2)
-                .attr("y", -(tileSize * scaleFactor) / 2)
+                .attr("y", -(tileSize * scaleFactor) / 2 + NODE_CONFIG[d.data.type].IMAGE_CONFIG.Y_OFFSET)
                 .attr("width", tileSize * scaleFactor)
                 .attr("height", tileSize * scaleFactor);
         });
+}
+
+/**
+ * テキストが指定された最大幅を超える場合にフォントサイズを調整する関数
+ * @param {string} text - テキスト内容
+ * @param {number} maxWidth - テキストの最大幅
+ * @param {string} initialFontSize - 初期フォントサイズ
+ * @param {number} padding - 左右の余白
+ * @returns {string} 調整されたフォントサイズ
+ */
+function adjustFontSizeToFit(text, maxWidth, initialFontSize, padding = 3) {
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
+    let fontSize = parseInt(initialFontSize, 10);
+    context.font = `${fontSize}px sans-serif`;
+
+    // テキストが最大幅を超える場合、フォントサイズを調整
+    while (context.measureText(text).width > (maxWidth - padding * 2) && fontSize > 6) { // 最小フォントサイズを6pxに設定
+        fontSize -= 1;
+        context.font = `${fontSize}px sans-serif`;
+    }
+    return `${fontSize}px`;
 }
 
 /**
@@ -90,18 +106,35 @@ export function addClipPath(nodeSelection) {
  * @param {d3.Selection} nodeSelection - ノード群の d3 Selection
  */
 export function drawNodeText(nodeSelection) {
-    nodeSelection
-        .append("text")
-        .attr("text-anchor", "middle")
-        .style("font-size", (d) => NODE_CONFIG[d.data.type].FONTSIZE)
-        .style("fill", (d) => NODE_CONFIG[d.data.type].TEXTCOLOR)
-        .selectAll("tspan")
-        .data((d) => [d.data.id, `${d.data.required.toFixed(2)}/min`])
-        .enter()
-        .append("tspan")
-        .attr("x", 0)
-        .attr("dy", (d, i) => (i === 0 ? "-0.2em" : "1.2em"))
-        .text((d) => d);
+    nodeSelection.each(function(d) {
+        const config = NODE_CONFIG[d.data.type];
+        const group = d3.select(this);
+        const maxWidth = config.WIDTH;
+        const fontSize = parseInt(config.TEXT.FONTSIZE, 10);
+
+        // 1行目：ID部分のテキスト（フォントサイズは調整する）
+        const idFontSize = adjustFontSizeToFit(d.data.id, maxWidth, config.TEXT.FONTSIZE);
+        group.append("text")
+            .attr("text-anchor", "middle")
+            .attr("x", 0)
+            .attr("y", -5)
+            .text(d.data.id)
+            .style("font-size", idFontSize)
+            .style("fill", config.TEXT.COLOR);
+
+        // 2行目：生産数のテキスト
+        const productionText = d.data.type === NODE_TYPE.EQUIPMENT
+            ? `${d.data.required.toFixed(0)}`
+            : `${d.data.required.toFixed(2)}/min`;
+        const productionFontSize = config.TEXT.FONTSIZE;
+        group.append("text")
+            .attr("text-anchor", "middle")
+            .attr("x", 0)
+            .attr("y", fontSize + 2)
+            .text(productionText)
+            .style("font-size", productionFontSize)
+            .style("fill", config.TEXT.COLOR);
+    });
 }
 
 /**

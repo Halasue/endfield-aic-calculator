@@ -17,7 +17,7 @@ import { TREE_DIRECTION } from "./constants.js";
 
 /** ノードサイズの定義 */
 const DEFAULT_NODE_CONFIG = {
-    WIDTH: 200,
+    WIDTH: 160,
     HEIGHT: 120,
     SIBLINGSEPARATION: 2,
     NONSIBLINGSEPARATION: 2,
