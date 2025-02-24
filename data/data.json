@@ -1885,7 +1885,7 @@
     },
     {
       "recipe_id": "recipe_075",
-      "material_id": "steel_bottle_(jar)",
+      "material_id": "steel_jar",
       "quantity": 5
     },
     {
@@ -1905,7 +1905,7 @@
     },
     {
       "recipe_id": "recipe_077",
-      "material_id": "steel_bottle_(jar)",
+      "material_id": "steel_jar",
       "quantity": 5
     },
     {
@@ -1935,7 +1935,7 @@
     },
     {
       "recipe_id": "recipe_080",
-      "material_id": "cuprium_bottle",
+      "material_id": "cuprium_jar",
       "quantity": 10
     },
     {
@@ -1945,7 +1945,7 @@
     },
     {
       "recipe_id": "recipe_081",
-      "material_id": "cuprium_bottle",
+      "material_id": "cuprium_jar",
       "quantity": 10
     },
     {
