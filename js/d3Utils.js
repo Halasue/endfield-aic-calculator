@@ -7,6 +7,8 @@ import { NODE_CONFIG } from "./constants.js";
 
 // --- ズーム設定関連 ---
 const ZOOM_CONFIG = { MIN: 0.2, MAX: 5 };
+const TREE_MARGIN = 30;
+
 
 /**
  * ツリー全体のサイズを算出する。
@@ -143,8 +145,8 @@ export function applyInitialTransform(zoom, svg, root, width, height) {
 
     const { treeWidth, treeHeight, xExtent, yExtent } = getTreeSize(root);
     const scale = Math.min(
-        width / treeWidth,
-        height / treeHeight,
+        (width - TREE_MARGIN) / treeWidth,
+        (height - TREE_MARGIN) / treeHeight,
         ZOOM_CONFIG.MAX
     );
 
