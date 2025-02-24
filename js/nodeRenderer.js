@@ -11,8 +11,8 @@ import { NODE_TYPE, NODE_CONFIG } from "./constants.js";
 
 // --- 画像スケール ---
 const IMAGE_CONFIG = {
-    [NODE_TYPE.ITEM]: { SCALEFACTOR: 0.3 },
-    [NODE_TYPE.EQUIPMENT]: { SCALEFACTOR: 0.5 },
+    [NODE_TYPE.ITEM]: { SCALEFACTOR: 0.6 },
+    [NODE_TYPE.EQUIPMENT]: { SCALEFACTOR: 1 },
 };
 
 /**
