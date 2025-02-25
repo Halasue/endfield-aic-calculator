@@ -9,6 +9,7 @@ import { Item } from "./item.js";
 import { Facility } from "./facility.js";
 import { NODE_TYPE, NODE_CONFIG } from "./constants.js";
 import { calculateClipPathRect } from "./clipPathUtils.js";
+import { t,tText } from "./i18n.js";
 
 /**
  * ノード背景（矩形）を描画する。
@@ -110,29 +111,34 @@ export function drawNodeText(nodeSelection) {
         const config = NODE_CONFIG[d.data.type];
         const group = d3.select(this);
         const maxWidth = config.WIDTH;
-        const fontSize = parseInt(config.TEXT.FONTSIZE, 10);
+        const baseFontSize = parseInt(config.TEXT.FONTSIZE, 10);
 
-        // 1行目：ID部分のテキスト（フォントサイズは調整する）
-        const idFontSize = adjustFontSizeToFit(d.data.id, maxWidth, config.TEXT.FONTSIZE);
+        const localizedName = d.data.type === NODE_TYPE.EQUIPMENT
+            ? t(Facility.getFacilityById(d.data.id) || { name_jp: d.data.id, name_en: d.data.id })
+            : t(Item.getItemById(d.data.id) || { name_jp: d.data.id, name_en: d.data.id });
+
+        const nameFontSize = adjustFontSizeToFit(localizedName, maxWidth, config.TEXT.FONTSIZE);
+
+        // 1行目：ノード名称を表示
         group.append("text")
             .attr("text-anchor", "middle")
             .attr("x", 0)
             .attr("y", -5)
-            .text(d.data.id)
-            .style("font-size", idFontSize)
+            .text(localizedName)
+            .style("font-size", nameFontSize)
             .style("fill", config.TEXT.COLOR);
 
         // 2行目：生産数のテキスト
         const productionText = d.data.type === NODE_TYPE.EQUIPMENT
-            ? `${d.data.required.toFixed(0)}`
+            ? `${d.data.required.toFixed(0)} ${tText("units")}`
             : `${d.data.required.toFixed(2)}/min`;
-        const productionFontSize = config.TEXT.FONTSIZE;
+
         group.append("text")
             .attr("text-anchor", "middle")
             .attr("x", 0)
-            .attr("y", fontSize + 2)
+            .attr("y", baseFontSize + 2)
             .text(productionText)
-            .style("font-size", productionFontSize)
+            .style("font-size", config.TEXT.FONTSIZE)
             .style("fill", config.TEXT.COLOR);
     });
 }

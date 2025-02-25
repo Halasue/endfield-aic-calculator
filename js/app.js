@@ -3,11 +3,12 @@
  * @description メインの初期化およびイベント設定処理
  */
 
-import { loadData, getSpriteData } from "./dataManager.js";
+import { loadData, getSpriteData, getFacilities } from "./dataManager.js";
 import { renderTree } from "./treeRenderer.js";
 import { preloadImages } from "./imageCache.js";
 import { Item } from "./item.js";
 import { calculateProductionTree, calculateTotalEquipment } from "./calc.js";
+import { t, tText, currentLocale, setLocale, localizeStaticElements } from "./i18n.js";
 
 /**
  * アイテム選択ドロップダウンを生成する。
@@ -21,12 +22,13 @@ function createItemDropdown() {
 
     // ドロップダウンのオプションを一括設定
     selectElement.innerHTML = "";
-    selectElement.append(new Option("Please select an item", ""));
+    const defaultText = tText("itemSelectionDefault");
+    selectElement.append(new Option(defaultText, ""));
 
     Item.getAllItems().forEach((item) => {
         const option = document.createElement("option");
         option.value = item.item_id;
-        option.textContent = `${item.name_jp} (${item.name_en})`;
+        option.textContent = t(item);
         selectElement.appendChild(option);
     });
 }
@@ -80,9 +82,7 @@ function recalcProductionFlow() {
         );
         svgContainer.innerHTML = "";
         renderTree(treeData, svgContainer);
-        totalEquipmentDiv.textContent = `Total equipment: ${calculateTotalEquipment(
-            treeData
-        )}`;
+        totalEquipmentDiv.textContent = `${tText("totalEquipment")}: ${calculateTotalEquipment(treeData)}`;
     } catch (error) {
         console.error("Error in production flow calculation:", error);
     }
@@ -94,6 +94,8 @@ function recalcProductionFlow() {
  * - スプライト画像をプリロード
  * - ドロップダウンリストを生成
  * - イベントリスナーを設定
+ * - 静的ラベルをローカライズ
+ * - 言語選択ドロップダウンのイベント処理を設定
  */
 document.addEventListener("DOMContentLoaded", async () => {
     try {
@@ -111,6 +113,27 @@ document.addEventListener("DOMContentLoaded", async () => {
         document
             .getElementById("timeInput")
             ?.addEventListener("input", recalcProductionFlow);
+
+        // ページ内の静的ラベルをローカライズ
+        localizeStaticElements();
+
+        // 言語選択ドロップダウンの初期設定とイベント処理
+        const languageSelector = document.getElementById("languageSelector");
+        if (languageSelector) {
+            // 初期値を現在のロケールに合わせる
+            languageSelector.value = currentLocale;
+            languageSelector.addEventListener("change", (e) => {
+                const newLang = e.target.value;
+                setLocale(newLang);
+                // ラベルを再ローカライズ
+                localizeStaticElements();   
+                // アイテムドロップダウンを再生成
+                createItemDropdown();
+                // 生産フローをクリア
+                svgContainer.innerHTML = "";
+                totalEquipment.textContent = "";
+            });
+        }
     } catch (error) {
         console.error("Data load or image preload failed", error);
     }

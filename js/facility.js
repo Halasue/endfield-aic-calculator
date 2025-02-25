@@ -16,6 +16,8 @@ export class Facility {
      */
     constructor(data) {
         this.facility_id = data.facility_id;
+        this.name_jp = data.name_jp;
+        this.name_en = data.name_en;
         this.process_time = data.process_time;
         this.sprite_col = data.sprite_col;
         this.sprite_row = data.sprite_row;
