@@ -131,7 +131,7 @@ export function drawNodeText(nodeSelection) {
         // 2行目：生産数のテキスト
         const productionText = d.data.type === NODE_TYPE.EQUIPMENT
             ? `${d.data.required.toFixed(0)} ${tText("units")}`
-            : `${d.data.required.toFixed(2)}/min`;
+            : `${d.data.required.toFixed(2)}/${tText("minute")}`;
 
         group.append("text")
             .attr("text-anchor", "middle")

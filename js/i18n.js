@@ -39,6 +39,7 @@ const translations = {
         resetButton: "リセット",
         totalEquipment: "総設備数",
         units : "台",
+        minute : "分",
         itemSelectionDefault: "アイテムを選択してください"
     },
     en: {
@@ -48,6 +49,7 @@ const translations = {
         resetButton: "Reset",
         totalEquipment: "Total Equipment",
         units : "units",
+        minute : "min",
         itemSelectionDefault: "Please select an item"
     }
 };
