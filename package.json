@@ -1,0 +1,16 @@
+{
+  "devDependencies": {
+    "@types/d3": "^7.4.3",
+    "eslint": "^9.21.0",
+    "globals": "^16.0.0",
+    "live-server": "^1.2.0",
+    "nodemon": "^3.1.9",
+    "prettier": "^3.5.2"
+  },
+  "scripts": {
+    "start": "live-server"
+  },
+  "dependencies": {
+    "uuid": "^11.1.0"
+  }
+}
