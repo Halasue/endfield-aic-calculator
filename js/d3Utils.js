@@ -8,7 +8,7 @@ import { getSpriteData } from "./dataManager.js";
 import { calculateClipPathRect } from "./clipPathUtils.js";
 
 // --- ズーム設定関連 ---
-const ZOOM_CONFIG = { MIN: 0.2, MAX: 5 };
+const ZOOM_CONFIG = { MIN: 0.2, MAX: 5, DEFAULT: 2 };
 const TREE_MARGIN_VERTICAL = 50;
 const TREE_MARGIN_HORIZONTAL = 50;
 
@@ -187,7 +187,7 @@ export function applyInitialTransform(zoom, svg, root, width, height) {
     const scale = Math.min(
         (width - TREE_MARGIN_HORIZONTAL) / treeWidth,
         (height - TREE_MARGIN_VERTICAL) / treeHeight,
-        ZOOM_CONFIG.MAX
+        ZOOM_CONFIG.DEFAULT
     );
 
     const [xMin, xMax] = xExtent;

@@ -38,8 +38,8 @@ export const NODE_CONFIG = {
             FONTSIZE: "14px",
         },
         IMAGE_CONFIG: {
-            SCALEFACTOR: 1,
-            Y_OFFSET: -75,
+            SCALEFACTOR: 0.8,
+            Y_OFFSET: -65,
         },
     },
 };
