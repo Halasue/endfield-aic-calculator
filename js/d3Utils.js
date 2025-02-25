@@ -4,15 +4,17 @@
  */
 
 import { NODE_CONFIG } from "./constants.js";
+import { getSpriteData } from "./dataManager.js";
+import { calculateClipPathRect } from "./clipPathUtils.js";
 
 // --- ズーム設定関連 ---
 const ZOOM_CONFIG = { MIN: 0.2, MAX: 5 };
-const TREE_MARGIN_VERTICAL = 80;
+const TREE_MARGIN_VERTICAL = 50;
 const TREE_MARGIN_HORIZONTAL = 50;
-
 
 /**
  * ツリー全体のサイズを算出する。
+ * 背景の矩形とクリップパスで設定した画像領域の両方を考慮して計算する。
  * @param {Object} root - d3.hierarchy のルートノード
  * @returns {Object} 計算結果（ツリー幅、高さ、範囲情報）
  */
@@ -28,21 +30,58 @@ export function getTreeSize(root) {
         };
     }
 
-    const xValues = nodes.flatMap((d) => {
-        const width = NODE_CONFIG[d.data.type].WIDTH;
-        return [d.x - width / 2, d.x + width / 2];
+    const xMins = [];
+    const xMaxs = [];
+    const yMins = [];
+    const yMaxs = [];
+
+    const spriteData = getSpriteData();
+
+    nodes.forEach((d) => {
+        const config = NODE_CONFIG[d.data.type];
+
+        // 背景矩形のバウンディングボックス
+        const rectLeft   = d.x - config.WIDTH / 2;
+        const rectRight  = d.x + config.WIDTH / 2;
+        const rectTop    = d.y - config.HEIGHT / 2;
+        const rectBottom = d.y + config.HEIGHT / 2;
+
+        let nodeXMin = rectLeft;
+        let nodeXMax = rectRight;
+        let nodeYMin = rectTop;
+        let nodeYMax = rectBottom;
+
+        // クリップパス用画像領域を計算（共通関数利用）
+        const clipRect = calculateClipPathRect(d, spriteData);
+        if (clipRect) {
+            const { x, y, width, height } = clipRect;
+            const imgLeft   = d.x + x;
+            const imgRight  = imgLeft + width;
+            const imgTop    = d.y + y;
+            const imgBottom = imgTop + height;
+
+            nodeXMin = Math.min(nodeXMin, imgLeft);
+            nodeXMax = Math.max(nodeXMax, imgRight);
+            nodeYMin = Math.min(nodeYMin, imgTop);
+            nodeYMax = Math.max(nodeYMax, imgBottom);
+        }
+
+        xMins.push(nodeXMin);
+        xMaxs.push(nodeXMax);
+        yMins.push(nodeYMin);
+        yMaxs.push(nodeYMax);
     });
 
-    const yValues = nodes.flatMap((d) => {
-        const height = NODE_CONFIG[d.data.type].HEIGHT;
-        return [d.y - height / 2, d.y + height / 2];
-    });
+    const globalXMin = Math.min(...xMins);
+    const globalXMax = Math.max(...xMaxs);
+    const globalYMin = Math.min(...yMins);
+    const globalYMax = Math.max(...yMaxs);
 
     return {
-        treeWidth: Math.max(...xValues) - Math.min(...xValues),
-        treeHeight: Math.max(...yValues) - Math.min(...yValues),
-        xExtent: [Math.min(...xValues), Math.max(...xValues)],
-        yExtent: [Math.min(...yValues), Math.max(...yValues)],
+        treeWidth: globalXMax - globalXMin,
+        treeHeight: globalYMax - globalYMin,
+        xExtent: [globalXMin, globalXMax],
+        yExtent: [globalYMin, globalYMax],
     };
 }
 
@@ -159,8 +198,7 @@ export function applyInitialTransform(zoom, svg, root, width, height) {
         .scale(scale)
         .translate(-(xMin + xMax) / 2, -(yMin + yMax) / 2);
 
-    const translateY = 50;
-    svg.call(zoom.transform, initialTransform.translate(0, translateY)); // Y軸方向に20ピクセルオフセット
+    svg.call(zoom.transform, initialTransform);
 
     return initialTransform;
 }

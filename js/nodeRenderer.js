@@ -8,6 +8,7 @@ import { getCachedImage } from "./imageCache.js";
 import { Item } from "./item.js";
 import { Facility } from "./facility.js";
 import { NODE_TYPE, NODE_CONFIG } from "./constants.js";
+import { calculateClipPathRect } from "./clipPathUtils.js";
 
 /**
  * ノード背景（矩形）を描画する。
@@ -67,15 +68,14 @@ export function addClipPath(nodeSelection) {
         .attr("id", (d) => `clip-${d.data.id}`)
         .append("rect")
         .each(function (d) {
-            const category = spriteData.categories[d.data.type];
-            const tileSize = category.tileSize;
-            const scaleFactor = NODE_CONFIG[d.data.type].IMAGE_CONFIG.SCALEFACTOR;
-
-            d3.select(this)
-                .attr("x", -(tileSize * scaleFactor) / 2)
-                .attr("y", -(tileSize * scaleFactor) / 2 + NODE_CONFIG[d.data.type].IMAGE_CONFIG.Y_OFFSET)
-                .attr("width", tileSize * scaleFactor)
-                .attr("height", tileSize * scaleFactor);
+            const clipRect = calculateClipPathRect(d, spriteData);
+            if (clipRect) {
+                d3.select(this)
+                    .attr("x", clipRect.x)
+                    .attr("y", clipRect.y)
+                    .attr("width", clipRect.width)
+                    .attr("height", clipRect.height);
+            }
         });
 }
 
