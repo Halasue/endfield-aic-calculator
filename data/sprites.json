@@ -1,12 +1,12 @@
 {
     "categories": {
       "item": {
-        "spriteSheet": "../images/items_sprite_sheet_19c527e904112edefb5b3719e6d64be2.webp",
-        "tileSize": 256
+        "spriteSheet": "../images/items_sprite_sheet_527489b17daaeea21be099f20f0f086f.png",
+        "tileSize": 128
       },
       "equipment": {
-        "spriteSheet": "../images/facilities_sprite_sheet_1c2536c5c21d7d0e9d1bd49398abb32b.webp",
-        "tileSize": 256
+        "spriteSheet": "../images/facilities_sprite_sheet_cda3f689d7098a9d24844671267a1775.png",
+        "tileSize": 128
       }
     }
   }
