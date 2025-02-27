@@ -24,7 +24,7 @@ export const NODE_CONFIG = {
             FONTSIZE: "10px",
         },
         IMAGE_CONFIG: {
-            SCALEFACTOR: 0.6,
+            SCALEFACTOR: 0.3,
             Y_OFFSET: -45,
         },
     },
@@ -38,7 +38,7 @@ export const NODE_CONFIG = {
             FONTSIZE: "14px",
         },
         IMAGE_CONFIG: {
-            SCALEFACTOR: 0.8,
+            SCALEFACTOR: 0.5,
             Y_OFFSET: -65,
         },
     },
