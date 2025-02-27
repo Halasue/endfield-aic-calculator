@@ -51,7 +51,7 @@ This project is a **Production Calculation Tool** for the **Automated Industry C
 
 ## Version Information
 
-**⚠Current Version: v0.1.0 (Alpha Release)**
+**⚠Current Version: v0.1.1 (Alpha Release)**
 
 This project is **Work In Progress (WIP)** and not a stable release.
 Features and specifications may change without notice.
